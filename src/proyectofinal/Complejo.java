@@ -100,7 +100,11 @@ public class Complejo {
                     existencia = true;
                     for (int j = 0; j < salas[i].cantidadFilas; j++) {
                         for (int k = 0; k < salas[i].sillasPorFila; k++) {
-                            muestreMapa += sl.programaciones[i].sillas[j][k] + " ";
+                            try {
+                                muestreMapa += sl.programaciones[i].sillas[j][k] + " ";
+                            } catch(NullPointerException ex){
+                                JOptionPane.showMessageDialog(null, "No existen programaciones registradas");
+                            }
                         }
                         muestreMapa += "\n";
                     }
