@@ -20,6 +20,8 @@ public class PrincipalEmpresa {
         Programacion pr = new Programacion();
         Complejo cp = new Complejo();
         Reserva rv = new Reserva();
+        Empresa ep = new Empresa();
+        Sala sl = new Sala();
         // Asignamos un complejo para hacer la prueba de que no se registren las salas
         Complejo[] complejos = new Complejo[1];
 
@@ -47,7 +49,7 @@ public class PrincipalEmpresa {
                 boolean autentiAdmin = false;
                 boolean autentiCajero = false;
                 if (numUso == 0 && registroUnico == 0) { // Si se seleccionó la opción de registrar usuarios
-                    cp.registrarUsuarios(); // Invocar el metodo de registrar usuarios, cabe destacar que se invoca solo una vez
+                    ep.registrarUsuarios(); // Invocar el metodo de registrar usuarios, cabe destacar que se invoca solo una vez
                     registroUnico++;
                     /* Si se ha hecho el registro de los dos usuarios, 
                                     no se permitirá realizar un segundo registro de usuarios*/
@@ -93,11 +95,11 @@ public class PrincipalEmpresa {
                                                         }
                                                         break;
                                                     case 3:
-                                                        pr.ingresarPelicula();
+                                                        ep.ingresarPelicula();
                                                         break;
                                                     case 4:
                                                         peliEspecifica = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
-                                                        pr.actualizarDatosPelicula(peliEspecifica);
+                                                        ep.actualizarDatosPelicula(peliEspecifica);
                                                         break;
                                                     case 5:
                                                         boolean existeSala = false;
@@ -156,11 +158,11 @@ public class PrincipalEmpresa {
                                                             + "\n6. Salir"));
                                                     switch (opcionesCajero) {
                                                         case 1:
-                                                            pr.mostrarProgramacion();
+                                                            sl.mostrarProgramacion();
                                                             break;
                                                         case 2:
                                                             buscarPelicula = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
-                                                            pr.mostrarInfoPelicula(buscarPelicula);
+                                                            ep.mostrarInfoPelicula(buscarPelicula);
                                                             break;
                                                         case 3:
                                                             idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));

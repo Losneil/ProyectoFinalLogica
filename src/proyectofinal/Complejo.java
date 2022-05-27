@@ -53,9 +53,7 @@ public class Complejo {
     int iterador = 0;
     public void ingresarSala() {
         Sala sl = new Sala();
-        
         sl.pedirInfoSala();
-        
         if(this.buscarSala(sl.numeroSala) == null){
             salas[iterador] = sl;
             iterador++;
@@ -103,7 +101,7 @@ public class Complejo {
                     existencia = true;
                     for (int j = 0; j < salas[i].cantidadFilas; j++) {
                         for (int k = 0; k < salas[i].sillasPorFila; k++) {
-                            muestreMapa += salas[i].mapa[j][k] + " ";
+                            muestreMapa += salas[i].sillas[j][k] + " ";
                         }
                         muestreMapa += "\n";
                     }
@@ -136,7 +134,6 @@ public class Complejo {
                                         + "¿Quiere reservar el asiento [" + j + "][" + k + "] ?", "", JOptionPane.YES_NO_OPTION);
                                 if (confirmarReserva == JOptionPane.YES_OPTION) {
                                     salas[i].sillas[j][k] = false; // Ocupamos la silla
-                                    salas[i].mapa[j][k] = "[x]"; // Marcamos la silla ocupada
                                 } else {
                                     if (confirmarReserva == JOptionPane.NO_OPTION) {
                                         break; // Rompe el ciclo interno
@@ -172,27 +169,5 @@ public class Complejo {
             }
         }
         return recaudo;
-    }
-
-    /*Este método se encarga de registrar a los dos usuarios que usarán el sistema
-    @author José Manuel Quintero Rodriguez*/
-    public void registrarUsuarios() {
-        String nick, password, tipoUser;
-        for (int i = 0; i < users.length; i++) {
-            // Creamos el objeto con datos inicializados
-            users[i] = new Usuario();
-            if (i == 0) {
-                tipoUser = "Administrador";
-            } else {
-                tipoUser = "Cajero";
-            }
-            nick = JOptionPane.showInputDialog("Registre nombre para el " + tipoUser);
-            password = JOptionPane.showInputDialog("Registre contrasena para el " + tipoUser);
-            users[i].setNombre(nick);
-            users[i].setContrasena(password);
-            // Esta es la forma mas simple de hacerlo
-//            users[i].nombre = JOptionPane.showInputDialog("Registre nombre para cajero " + (i + 1));
-//            users[i].contrasena = JOptionPane.showInputDialog("Registre contraseña para cajero " + (i + 1));
-        }
     }
 }

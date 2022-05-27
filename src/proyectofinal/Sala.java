@@ -18,7 +18,9 @@ public class Sala{
     int numeroSala, cantidadFilas, sillasPorFila;
     double valorBoleta;
     boolean sillas[][];
-    String mapa[][];
+    // Declaramos el arreglo de programaciones que serán como máximo 5
+    Programacion programaciones[] = new Programacion[5];
+    Pelicula pl = new Pelicula();
 
     /*Este es el método constructor de la clase que se encarga de inicializar los valoes
     de los atributos. Cabe destacar que la inicializacion tambien sirve para que al momento de
@@ -30,6 +32,30 @@ public class Sala{
         sillasPorFila = 0;
         valorBoleta = 0;
     }
+    
+    /* Este metodo se encarga de mostrar la programación que tiene la sala para un día
+    @author Jose Manuel Quintero Rodriguez*/
+    public void mostrarProgramacion() {
+        // Creamos un arreglo que almacenara un listado de peliculas en cartelera
+        String listadoPeliculas = "";
+        boolean existencia = false;
+        for (int i = 0; i < programaciones.length; i++) { // Recorremos el arreglo de peliculas
+            if (programaciones[i] != null) { // Verificamos que el objeto Pelicula en la posición indicada, exista en el arreglo
+                if (pl.actividad == true) { // Indicamos si la pelicula está activa para agregarla a la programación
+                    existencia = true;
+                    listadoPeliculas += (i + 1) + ". " + pl.nomEspanol
+                            + "\nHorario: " + programaciones[i].horario + "\nNumero de la sala: " + numeroSala;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede mostrar la programación\n"
+                        + "si no hay peliculas registradas", "ERROR", JOptionPane.ERROR_MESSAGE);
+                break;
+            }
+        } // Mostramos el listado con la programación
+        if (existencia == true) {
+            JOptionPane.showMessageDialog(null, listadoPeliculas);
+        }
+    }
 
     /* Este método se encarga de solicitar los datos de la sala además de definir el diseño del mapa de la sala
     @author Jose Manuel Quintero Rodriguez */
@@ -40,11 +66,10 @@ public class Sala{
         sillasPorFila = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de sillas por fila"));
         valorBoleta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese valor de la boleta"));
         sillas = new boolean[cantidadFilas][sillasPorFila];
-        mapa = new String[cantidadFilas][sillasPorFila];
         // Generar el mapa de la sala sin asientos reservados
         for (int i = 0; i < cantidadFilas; i++) {
             for (int j = 0; j < sillasPorFila; j++) {
-                mapa[i][j] = "[ ]";
+                sillas[i][j] = true;
             }
         }
     }
