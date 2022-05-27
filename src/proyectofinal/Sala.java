@@ -17,7 +17,7 @@ public class Sala{
     // Se tienen los atributos respectivos de la clase
     int numeroSala, cantidadFilas, sillasPorFila;
     double valorBoleta;
-    boolean sillas[][];
+    
     // Declaramos el arreglo de programaciones que serán como máximo 5
     Programacion programaciones[] = new Programacion[5];
     Pelicula pl = new Pelicula();
@@ -28,8 +28,8 @@ public class Sala{
     @author José Manuel Quintero Rodriguez*/
     public Sala() {
         numeroSala = 0;
-        cantidadFilas = 0;
-        sillasPorFila = 0;
+        cantidadFilas = 5;
+        sillasPorFila = 5;
         valorBoleta = 0;
     }
     
@@ -41,13 +41,6 @@ public class Sala{
         cantidadFilas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de filas"));
         sillasPorFila = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de sillas por fila"));
         valorBoleta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese valor de la boleta"));
-        sillas = new boolean[cantidadFilas][sillasPorFila];
-        // Generar el mapa de la sala sin asientos reservados
-        for (int i = 0; i < cantidadFilas; i++) {
-            for (int j = 0; j < sillasPorFila; j++) {
-                sillas[i][j] = true;
-            }
-        }
     }
     
     /* Este metodo se encarga de mostrar la programación que tiene la sala para un día

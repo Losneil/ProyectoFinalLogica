@@ -19,7 +19,7 @@ public class Complejo {
     int numSalas;
     /* Crear arreglo de tipo sala que almacenará como máximo 10 salas por complejo
     En este caso se dejó indicado el indice del numero de salas*/
-    Sala[] salas;
+    Sala[] salas = new Sala[10];
     /* Creamos el arreglo de usuarios que como máximo almacenará 2 usuarios
     que son el administrador y el cajero*/
     Usuario[] users = new Usuario[2];
@@ -27,7 +27,7 @@ public class Complejo {
     /* Método constructor que inicializa los valores de los atributos
     @author José Manuel Quintero Rodriguez*/
     public Complejo() {
-        numSalas = 0;
+//        numSalas = 0;
         nombre = "";
         direccion = "";
         nombreAdmin = "";
@@ -39,12 +39,12 @@ public class Complejo {
         nombre = JOptionPane.showInputDialog("Ingrese nombre del complejo");
         direccion = JOptionPane.showInputDialog("Ingrese direccion");
         nombreAdmin = JOptionPane.showInputDialog("Ingrese nombre del administrador");
-        do{
-            numSalas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de salas a registrar"));
-            if(numSalas > 10)
-                JOptionPane.showMessageDialog(null, "No pueden haber mas de 10 salas");
-        } while(numSalas > 10);
-        salas = new Sala[numSalas];
+//        do{
+//            numSalas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de salas a registrar"));
+//            if(numSalas > 10)
+//                JOptionPane.showMessageDialog(null, "No pueden haber mas de 10 salas");
+//        } while(numSalas > 10);
+//        salas = new Sala[numSalas];
     }
 
     /* Este método se encarga de crear un objeto de tipo Sala, pedir los datos del mismo
@@ -54,6 +54,7 @@ public class Complejo {
     public void ingresarSala() {
         Sala sl = new Sala();
         sl.pedirInfoSala();
+        
         if(this.buscarSala(sl.numeroSala) == null){
             salas[iterador] = sl;
             iterador++;
@@ -92,69 +93,71 @@ public class Complejo {
     
     /* Esté metodo permite mostrar el mapa de la sala especificando el número de esta
     @author José Manuel Quintero Rodríguez*/
-    public void mostrarMapaSala(int id) {
-        boolean existencia = false;
-        String muestreMapa = "";
-        for (int i = 0; i < salas.length; i++) { // Recorremos el arreglo de la sala
-            if (salas[i] != null) { // Verificamos si la sala existe
-                if (salas[i].numeroSala == id) { // Verificamos si existe la sala
-                    existencia = true;
-                    for (int j = 0; j < salas[i].cantidadFilas; j++) {
-                        for (int k = 0; k < salas[i].sillasPorFila; k++) {
-                            muestreMapa += salas[i].sillas[j][k] + " ";
-                        }
-                        muestreMapa += "\n";
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "No hay salas registradas en este complejo", "ERROR", JOptionPane.ERROR_MESSAGE);
-                break; // Rompemos el ciclo inmediatamente sacandonos del ciclo
-            }
-        } // En caso de que la existencia de esa sala especifica sea falsa
-        if (existencia == true) {
-            JOptionPane.showMessageDialog(null, muestreMapa);
-        }
-    }
-
-    /* Este método se encarga de hacer la reserva en de una silla en una sala
-    @author Jose Manuel Quintero Rodriguez*/
-    public void reservarSilla(int id) {
-        boolean existencia = false;
-        int controladorAlertas = 0;
-        int confirmarReserva; // variable que indica si la confimacion de la reserva
-        for (int i = 0; i < salas.length; i++) { // Recorremos el arreglo de la sala
-            if (salas[i] != null) { // Comprobamos que si existan salas en el complejo
-                if (salas[i].numeroSala == id) { // Verificamos si existe la sala
-                    existencia = true;
-                    for (int j = 0; j < salas[i].cantidadFilas; j++) { // Recorremos las filas 
-                        for (int k = 0; k < salas[i].sillasPorFila; k++) {
-                            salas[i].sillas[j][k] = true; // Por defecto decimos que la silla
-                            if (salas[i].sillas[j][k] == true) {
-                                confirmarReserva = JOptionPane.showConfirmDialog(null, ""
-                                        + "¿Quiere reservar el asiento [" + j + "][" + k + "] ?", "", JOptionPane.YES_NO_OPTION);
-                                if (confirmarReserva == JOptionPane.YES_OPTION) {
-                                    salas[i].sillas[j][k] = false; // Ocupamos la silla
-                                } else {
-                                    if (confirmarReserva == JOptionPane.NO_OPTION) {
-                                        break; // Rompe el ciclo interno
-                                    }
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Esta silla está ocupada", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-                            }
-                        }
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "No hay salas registradas en este complejo", "ERROR", JOptionPane.ERROR_MESSAGE);
-                controladorAlertas = 1;
-                break; // Rompemos el ciclo inmediatamente sacandonos del ciclo
-            }
-        } // En caso de que la existencia de esa sala especifica sea falsa
-        if (existencia == false && controladorAlertas == 0) {
-            JOptionPane.showMessageDialog(null, "No se encontró la sala", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+//    public void mostrarMapaSala(int id) {
+//        boolean existencia = false;
+//        String muestreMapa = "";
+//        for (int i = 0; i < salas.length; i++) { // Recorremos el arreglo de la sala
+//            if (salas[i] != null) { // Verificamos si la sala existe
+//                if (salas[i].numeroSala == id) { // Verificamos si existe la sala
+//                    existencia = true;
+//                    for (int j = 0; j < salas[i].cantidadFilas; j++) {
+//                        for (int k = 0; k < salas[i].sillasPorFila; k++) {
+//                            muestreMapa += salas[i].sillas[j][k] + " ";
+//                        }
+//                        muestreMapa += "\n";
+//                    }
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(null, "No hay salas registradas en este complejo", "ERROR", JOptionPane.ERROR_MESSAGE);
+//                break; // Rompemos el ciclo inmediatamente sacandonos del ciclo
+//            }
+//        } // En caso de que la existencia de esa sala especifica sea falsa
+//        if (existencia == true) {
+//            JOptionPane.showMessageDialog(null, muestreMapa);
+//        }
+//    }
+    
+    
+    
+//     /* Este método se encarga de hacer la reserva en de una silla en una sala
+//    @author Jose Manuel Quintero Rodriguez*/
+//    public void reservarSilla(int id) {
+//        boolean existencia = false;
+//        int controladorAlertas = 0;
+//        int confirmarReserva; // variable que indica si la confimacion de la reserva
+//        for (int i = 0; i < salas.length; i++) { // Recorremos el arreglo de la sala
+//            if (salas[i] != null) { // Comprobamos que si existan salas en el complejo
+//                if (salas[i].numeroSala == id) { // Verificamos si existe la sala
+//                    existencia = true;
+//                    for (int j = 0; j < salas[i].cantidadFilas; j++) { // Recorremos las filas 
+//                        for (int k = 0; k < salas[i].sillasPorFila; k++) {
+//                            salas[i].sillas[j][k] = true; // Por defecto decimos que la silla
+//                            if (salas[i].sillas[j][k] == true) {
+//                                confirmarReserva = JOptionPane.showConfirmDialog(null, ""
+//                                        + "¿Quiere reservar el asiento [" + j + "][" + k + "] ?", "", JOptionPane.YES_NO_OPTION);
+//                                if (confirmarReserva == JOptionPane.YES_OPTION) {
+//                                    salas[i].sillas[j][k] = false; // Ocupamos la silla
+//                                } else {
+//                                    if (confirmarReserva == JOptionPane.NO_OPTION) {
+//                                        break; // Rompe el ciclo interno
+//                                    }
+//                                }
+//                            } else {
+//                                JOptionPane.showMessageDialog(null, "Esta silla está ocupada", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+//                            }
+//                        }
+//                    }
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(null, "No hay salas registradas en este complejo", "ERROR", JOptionPane.ERROR_MESSAGE);
+//                controladorAlertas = 1;
+//                break; // Rompemos el ciclo inmediatamente sacandonos del ciclo
+//            }
+//        } // En caso de que la existencia de esa sala especifica sea falsa
+//        if (existencia == false && controladorAlertas == 0) {
+//            JOptionPane.showMessageDialog(null, "No se encontró la sala", "ERROR", JOptionPane.ERROR_MESSAGE);
+//        }
+//    }
 
     /* Este método se encarga de calcular el valor de recaudo por ganancias en un dia
     @author Jose Manuel Quintero Rodriguez*/

@@ -20,8 +20,10 @@ public class Programacion{
     // Establecemos el formato de la hora para el horario
     LocalTime horario = LocalTime.now();
     String nombrePelicula;
-    
+    boolean sillas[][] = new boolean[5][5];
     Pelicula pl = new Pelicula();
+    Sala sl = new Sala();
+    
 
     /*Este método constructor se encarga de realizar asignación de valores a los atributos
     @author Jose Manuel Quintero Rodriguez*/
@@ -31,6 +33,11 @@ public class Programacion{
     
     public void crearProgramacion(){
         numeroSala = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de la sala"));
-        
+        // Generar el mapa de la sala sin asientos reservados
+        for (int i = 0; i < sl.cantidadFilas; i++) {
+            for (int j = 0; j < sl.sillasPorFila; j++) {
+                sillas[i][j] = true;
+            }
+        }
     }
 }
