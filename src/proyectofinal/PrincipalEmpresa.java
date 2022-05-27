@@ -62,11 +62,11 @@ public class PrincipalEmpresa {
                         numUsuario = JOptionPane.showOptionDialog(null, "¿Con que perfil desea entrar?", "Elige...",
                                 0, JOptionPane.QUESTION_MESSAGE, null, nombreUsuario, "");
                         if (numUsuario == 0) { // Si el usuario seleccionado para entrar es el administrador
-                            if (cp.users[numUsuario] != null) { // Verificamos si existe el administrador
+                            if (ep.usuarios[numUsuario] != null) { // Verificamos si existe el administrador
                                 do { // Válidar credenciales del usuarios administrador
                                     nombre = JOptionPane.showInputDialog("Digite su nombre, señor administrador");
                                     clave = JOptionPane.showInputDialog("Digite su contraseña, señor administrador");
-                                    if (cp.users[numUsuario].autenticar(nombre, clave)) {
+                                    if (ep.usuarios[numUsuario].autenticar(nombre, clave)) {
                                         autentiAdmin = true;
                                         do { // Mostrar el menú de opciones para el administrador
                                             try {
@@ -141,11 +141,11 @@ public class PrincipalEmpresa {
                             }
                         } else {
                             if (numUsuario == 1) { // Si el usuario deseado para entrar es el cajero
-                                if (cp.users[numUsuario] != null) { // verificamos que el cajero si exista
+                                if (ep.usuarios[numUsuario] != null) { // verificamos que el cajero si exista
                                     do {
                                         nombre = JOptionPane.showInputDialog("Digite su nombre, señor cajero");
                                         clave = JOptionPane.showInputDialog("Digite su contraseña, señor cajero");
-                                        if (cp.users[numUsuario].autenticar(nombre, clave)) {
+                                        if (ep.usuarios[numUsuario].autenticar(nombre, clave)) {
                                             autentiCajero = true;
                                             do { // Mostrar el menú de opciones para el cajero
                                                 try {

@@ -3,8 +3,8 @@ package proyectofinal;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author JOSE QUINTERO
+ * Fecha de creacion: 27 de mayo
+ * @author
  */
 public class Empresa {
     Usuario usuarios[] = new Usuario[2];
