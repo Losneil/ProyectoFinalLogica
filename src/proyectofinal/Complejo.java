@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class Complejo {
 
-    // Atributos de la clase por Jose Manuel Quintero Rodriguez
     String nombre, direccion, nombreAdmin;
     int numSalas;
     /* Crear arreglo de tipo sala que almacenará como máximo 10 salas por complejo
