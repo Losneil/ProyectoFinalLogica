@@ -29,21 +29,27 @@ public class PrincipalEmpresa {
         int opcionesCajero = 0, opcionesAdministrador = 0, numeroPersonas, idSala, seguir, numUso, numUsuario;
         int registroUnico = 0; // Indicador de primero registro
 
-        do { // Ingresando credenciales al iniciar la ejecución del programa
-            nomPrincipal = JOptionPane.showInputDialog("Ingrese su nombre, señor gerente:");
-            contraPrincipal = JOptionPane.showInputDialog("Ingrese su contraseña, señor gerente:");
-            // Si el el nombre y la contraseña son distintos de estos que se evaluan en esta condicion
-            if (!nomPrincipal.equals("g") || !contraPrincipal.equals("1")) {
-                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        } while (!nomPrincipal.equals("g") || !contraPrincipal.equals("1"));
+        try {
+            do { // Ingresando credenciales al iniciar la ejecución del programa
+                nomPrincipal = JOptionPane.showInputDialog("Ingrese su nombre, señor gerente:");
+                contraPrincipal = JOptionPane.showInputDialog("Ingrese su contraseña, señor gerente:");
+
+                // Si el el nombre y la contraseña son distintos de estos que se evaluan en esta condicion
+                if (!nomPrincipal.equals("1") || !contraPrincipal.equals("1")) {
+                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } while (!nomPrincipal.equals("1") || !contraPrincipal.equals("1"));
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "No se permiten datos vacios", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
 
         String nombre, clave; // variables que se pasaran como parametros al metodo de autenticaciopn
         String[] opcionUso = {"Registrar usuarios", "Ingresar con usuario especifico"}; //Arreglo para las opciones de botón de acción
         String[] nombreUsuario = {"Administrador", "Cajero"}; //Arreglo para las opciones de botón de tipo de usuario
 
         do { // Una vez validadas las credenciales damos funcionalidades propias para un gerente o administrador principal
-            if (nomPrincipal.equals("g") && contraPrincipal.equals("1")) {
+            if (nomPrincipal.equals("1") && contraPrincipal.equals("1")) {
                 numUso = JOptionPane.showOptionDialog(null, "¿Seleccione una opción?", "Elige...",
                         0, JOptionPane.QUESTION_MESSAGE, null, opcionUso, "");
                 boolean autentiAdmin = false;
@@ -86,8 +92,8 @@ public class PrincipalEmpresa {
                                                     case 2:
                                                         if (complejos[0] != null) {
                                                             cp.ingresarSala();
-                                                            idSala = Integer.parseInt(JOptionPane.showInputDialog("Ingrese id de la sala"));
-                                                            cp.buscarSala(idSala);
+//                                                            idSala = Integer.parseInt(JOptionPane.showInputDialog("Ingrese id de la sala"));
+//                                                            cp.buscarSala(idSala);
                                                         } else {
                                                             JOptionPane.showMessageDialog(null, "Para registrar una sala "
                                                                     + "\ntiene que haber al menos un complejo registrado", "ERROR",
@@ -162,12 +168,12 @@ public class PrincipalEmpresa {
                                                             break;
                                                         case 2:
                                                             try {
-                                                                buscarPelicula = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
-                                                                ep.mostrarInfoPelicula(buscarPelicula);
-                                                            } catch(NullPointerException e){
-                                                                JOptionPane.showMessageDialog(null, "No se permiten caracteres vacios", "ERROR", JOptionPane.ERROR_MESSAGE);
-                                                            }
-                                                            break;
+                                                            buscarPelicula = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
+                                                            ep.mostrarInfoPelicula(buscarPelicula);
+                                                        } catch (NullPointerException e) {
+                                                            JOptionPane.showMessageDialog(null, "No se permiten caracteres vacios", "ERROR", JOptionPane.ERROR_MESSAGE);
+                                                        }
+                                                        break;
                                                         case 3:
                                                             idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
                                                             cp.mostrarMapaSala(idSala);
@@ -201,6 +207,7 @@ public class PrincipalEmpresa {
                     }
                 }
             }
+
             seguir = JOptionPane.showConfirmDialog(null, "¿Quiere terminar el programa?", "Confirmar", JOptionPane.YES_NO_OPTION);
         } while (seguir == JOptionPane.NO_OPTION);
     }

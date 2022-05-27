@@ -19,7 +19,7 @@ public class Complejo {
     int numSalas;
     /* Crear arreglo de tipo sala que almacenará como máximo 10 salas por complejo
     En este caso se dejó indicado el indice del numero de salas*/
-    Sala[] salas = new Sala[10];
+    Sala[] salas = new Sala[2];
     Sala sl = new Sala();
     
     /* Método constructor que inicializa los valores de los atributos
@@ -50,44 +50,43 @@ public class Complejo {
     @author José Manuel Quintero Rodríguez*/
     int iterador = 0;
     public void ingresarSala() {
-        Sala sl = new Sala();
-        sl.pedirInfoSala();
-        
-        if(this.buscarSala(sl.numeroSala) == null){
-            salas[iterador] = sl;
-            iterador++;
-        } else {
-            JOptionPane.showMessageDialog(null, "Ya existe");
-        }
-        
-//        for (int i = 0; i < salas.length; i++) {
-//            if (salas[i] == null) {
-//                salas[i] = new Sala(); // Creamos un objeto de tipo sala con datos inicializados y lo guardamos en la posicion i
-//                salas[i].pedirInfoSala(); // En el objeto que está en la posición i pedimos los datos y los guardamos para ese objeto
-//                for (int j = 0; j < i; j++) {
-//                    if (salas[j].numeroSala == salas[i].numeroSala) {
-//                        JOptionPane.showMessageDialog(null, "Ya existe la sala con este numero", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-//                        i--; // Pasamos a la posicion anterior y volvemos a la misma para sobreescribir el nombre
-//                        break; // Aqui rompemos el ciclo interno que maneja el iterador j
-//                    }
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Ya hay salas registradas" , "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-//                break;
-//            }
+//        Sala sl = new Sala();
+//        sl.pedirInfoSala();
+//        
+//        if(this.buscarSala(sl.numeroSala) == null){
+//            salas[iterador] = sl;
+//            iterador++;
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Ya existe");
 //        }
+        for (int i = 0; i < salas.length; i++) {
+            if (salas[i] == null) {
+                salas[i] = new Sala(); // Creamos un objeto de tipo sala con datos inicializados y lo guardamos en la posicion i
+                salas[i].pedirInfoSala(); // En el objeto que está en la posición i pedimos los datos y los guardamos para ese objeto
+                for (int j = 0; j < i; j++) {
+                    if (salas[j].numeroSala == salas[i].numeroSala) {
+                        JOptionPane.showMessageDialog(null, "Ya existe la sala con este numero", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                        i--; // Pasamos a la posicion anterior y volvemos a la misma para sobreescribir el nombre
+                        break; // Aqui rompemos el ciclo interno que maneja el iterador j
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Ya hay salas registradas" , "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                break;
+            }
+        }
     }
 
-    public Sala buscarSala(int idBuscar){
-        int i = 0;
-        while(salas[i] != null){
-            if(salas[i].numeroSala == idBuscar){
-                return salas[i];
-            }
-            i++;
-        }
-        return null;
-    }
+//    public Sala buscarSala(int idBuscar){
+//        int i = 0;
+//        while(salas[i] != null){
+//            if(salas[i].numeroSala == idBuscar){
+//                return salas[i];
+//            }
+//            i++;
+//        }
+//        return null;
+//    }
     
     /* Esté metodo permite mostrar el mapa de la sala especificando el número de esta
     @author José Manuel Quintero Rodríguez*/
