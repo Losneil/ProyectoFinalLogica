@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * en donde al suministrar los datos correspodiente detallamos la forma en como será el mapa de respectiva sala,
  * esta clase también se encarga de calcular el porcentaje de ocupación.
  */
-public class Sala extends Reserva{
+public class Sala{
 
     // Se tienen los atributos respectivos de la clase
     int numeroSala, cantidadFilas, sillasPorFila;
