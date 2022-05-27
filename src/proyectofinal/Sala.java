@@ -33,6 +33,23 @@ public class Sala{
         valorBoleta = 0;
     }
     
+    /* Este método se encarga de solicitar los datos de la sala además de definir el diseño del mapa de la sala
+    @author Jose Manuel Quintero Rodriguez */
+    public void pedirInfoSala() {
+        // El identificador de la sala se volverá autoincrementable
+        numeroSala = Integer.parseInt(JOptionPane.showInputDialog("Ingrese identificador de la sala"));
+        cantidadFilas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de filas"));
+        sillasPorFila = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de sillas por fila"));
+        valorBoleta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese valor de la boleta"));
+        sillas = new boolean[cantidadFilas][sillasPorFila];
+        // Generar el mapa de la sala sin asientos reservados
+        for (int i = 0; i < cantidadFilas; i++) {
+            for (int j = 0; j < sillasPorFila; j++) {
+                sillas[i][j] = true;
+            }
+        }
+    }
+    
     /* Este metodo se encarga de mostrar la programación que tiene la sala para un día
     @author Jose Manuel Quintero Rodriguez*/
     public void mostrarProgramacion() {
@@ -54,23 +71,6 @@ public class Sala{
         } // Mostramos el listado con la programación
         if (existencia == true) {
             JOptionPane.showMessageDialog(null, listadoPeliculas);
-        }
-    }
-
-    /* Este método se encarga de solicitar los datos de la sala además de definir el diseño del mapa de la sala
-    @author Jose Manuel Quintero Rodriguez */
-    public void pedirInfoSala() {
-        // El identificador de la sala se volverá autoincrementable
-        numeroSala = Integer.parseInt(JOptionPane.showInputDialog("Ingrese identificador de la sala"));
-        cantidadFilas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de filas"));
-        sillasPorFila = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de sillas por fila"));
-        valorBoleta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese valor de la boleta"));
-        sillas = new boolean[cantidadFilas][sillasPorFila];
-        // Generar el mapa de la sala sin asientos reservados
-        for (int i = 0; i < cantidadFilas; i++) {
-            for (int j = 0; j < sillasPorFila; j++) {
-                sillas[i][j] = true;
-            }
         }
     }
 
