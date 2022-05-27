@@ -161,8 +161,12 @@ public class PrincipalEmpresa {
                                                             sl.mostrarProgramacion();
                                                             break;
                                                         case 2:
-                                                            buscarPelicula = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
-                                                            ep.mostrarInfoPelicula(buscarPelicula);
+                                                            try {
+                                                                buscarPelicula = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
+                                                                ep.mostrarInfoPelicula(buscarPelicula);
+                                                            } catch(NullPointerException e){
+                                                                JOptionPane.showMessageDialog(null, "No se permiten caracteres vacios", "ERROR", JOptionPane.ERROR_MESSAGE);
+                                                            }
                                                             break;
                                                         case 3:
                                                             idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
@@ -180,7 +184,7 @@ public class PrincipalEmpresa {
                                                             break;
                                                     }
                                                 } catch (NumberFormatException ex) { // Capturamos la excepcion en caso de que haya ingresado una cadena
-                                                    JOptionPane.showMessageDialog(null, "No se permiten caracteres",
+                                                    JOptionPane.showMessageDialog(null, "No se permiten caracteres vacios",
                                                             "ERROR", JOptionPane.ERROR_MESSAGE);
                                                 }
                                             } while (opcionesCajero != 6);

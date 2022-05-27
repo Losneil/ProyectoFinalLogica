@@ -26,9 +26,7 @@ public class Programacion{
     Pelicula pl = new Pelicula();
     Complejo cp = new Complejo();
     Sala sl = new Sala();
-    int numeroSalas[] = {cp.salas.length};
     
-
     /*Este método constructor se encarga de realizar asignación de valores a los atributos
     @author Jose Manuel Quintero Rodriguez*/
     public Programacion() {
