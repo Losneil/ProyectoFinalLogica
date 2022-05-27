@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
  * y permite también registrar a los usuarios vendedor y administrador que pertenecerá al complejo.
  */
 public class Complejo {
-
+    
+    // Atributos de la clase
     String nombre, direccion, nombreAdmin;
     int numSalas;
     /* Crear arreglo de tipo sala que almacenará como máximo 10 salas por complejo
