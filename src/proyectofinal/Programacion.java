@@ -13,7 +13,7 @@ import java.time.LocalTime;
  * Esta clase también se encarga de mostrar la programación del día, mostrar la información completa de una 
  * pelicula y actualizar los datos de una pelicula especifica.
  */
-public class Programacion extends Sala {
+public class Programacion{
 
     // Atributos de la clase
     int sillasReservadas, idSala;
@@ -26,7 +26,7 @@ public class Programacion extends Sala {
     @author Jose Manuel Quintero Rodriguez*/
     public Programacion() {
         sillasReservadas = 0;
-        idSala = numeroSala;
+        
     }
 
     /*Este método se encarga de insertar las peliculas en la programación, 
@@ -66,7 +66,7 @@ public class Programacion extends Sala {
                 if (peliculas[i].actividad == true) { // Indicamos si la pelicula está activa para agregarla a la programación
                     existencia = true;
                     listadoPeliculas += (i + 1) + ". " + peliculas[i].nomEspanol
-                            + "\nHorario: " + horario + "\nNumero de la sala: " + numeroSala;
+                            + "\nHorario: " + horario + "\nNumero de la sala: " + idSala;
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "No se puede mostrar la programación\n"
