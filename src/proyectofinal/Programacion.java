@@ -20,9 +20,13 @@ public class Programacion{
     // Establecemos el formato de la hora para el horario
     LocalTime horario = LocalTime.now();
     String nombrePelicula;
+    Pelicula[] peliculas = new Pelicula[2];
     boolean sillas[][] = new boolean[5][5];
+    
     Pelicula pl = new Pelicula();
+    Complejo cp = new Complejo();
     Sala sl = new Sala();
+    int numeroSalas[] = {cp.salas.length};
     
 
     /*Este método constructor se encarga de realizar asignación de valores a los atributos
