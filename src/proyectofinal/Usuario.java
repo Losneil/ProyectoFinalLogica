@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package proyectofinal;
 
 /**
@@ -47,8 +44,8 @@ public class Usuario {
     
     /*Esté método se encarga de confirmar la autenticacion del usuario mediante nombre y contraseña
     @author Jose Manuel Quintero Rodriguez*/
-    public boolean autenticar(String n, String p){ // Pasando como parametros el nombre y la contraseña
-        if(getNombre().equals(n) && getContrasena().equals(p)){
+    public boolean autenticar(String n, String p) { // Pasando como parametros el nombre y la contraseña
+        if (getNombre().equals(n) && getContrasena().equals(p)) {
             return true;
         } else {
             return false;
