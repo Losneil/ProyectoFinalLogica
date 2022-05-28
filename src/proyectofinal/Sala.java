@@ -42,7 +42,12 @@ public class Sala{
 //        sillasPorFila = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de sillas por fila"));
         cantidadFilas = 5;
         sillasPorFila = 5;
-        valorBoleta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese valor de la boleta"));
+        do {
+            valorBoleta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese valor de la boleta"));
+            if(valorBoleta < 0){
+                JOptionPane.showMessageDialog(null, "No se permiten valores negativos", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        } while (valorBoleta < 0);
     }
     
     /* Este metodo se encarga de mostrar la programación que tiene la sala para un día
