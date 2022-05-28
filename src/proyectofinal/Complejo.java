@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 /**
  * Fecha de creacion: 3 de mayo
  *
- * @authores Jose Manuel Quintero Rodríguez
+ * @authores Jose Manuel Quintero Rodríguez, Juan Angel Eiano Quintero
  * 
  * Esta clase se encarga de pedir los datos de un complejo, ingresar un numero no mayor a 10 de salas
  * mostrar el mapa de la sala mediante especificación de identificador, reservar una silla en una sala,
