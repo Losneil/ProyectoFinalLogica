@@ -48,7 +48,6 @@ public class Complejo {
     /* Este método se encarga de crear un objeto de tipo Sala, pedir los datos del mismo
     y validar que el objeto de la sala no esté repetido mediante su ID
     @author José Manuel Quintero Rodríguez*/
-    int iterador = 0;
     public void ingresarSala() {
 //        Sala sl = new Sala();
 //        sl.pedirInfoSala();
