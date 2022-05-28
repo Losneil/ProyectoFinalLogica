@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 /**
  * Fecha de creacion: 3 de mayo
  *
- * @authores Jose Manuel Quintero Rodríguez, Juan Angel Eiano Quintero
+ * @authores Jose Manuel Quintero Rodríguez, Juan Angel Riano Quintero
  * 
  * Esta clase se encarga de pedir los datos de un complejo, ingresar un numero no mayor a 10 de salas
  * mostrar el mapa de la sala mediante especificación de identificador, reservar una silla en una sala,
@@ -17,7 +17,6 @@ public class Complejo {
     
     // Atributos de la clase
     String nombre, direccion, nombreAdmin;
-    int numSalas;
     /* Crear arreglo de tipo sala que almacenará como máximo 10 salas por complejo
     En este caso se dejó indicado el indice del numero de salas*/
     Sala[] salas = new Sala[2];
