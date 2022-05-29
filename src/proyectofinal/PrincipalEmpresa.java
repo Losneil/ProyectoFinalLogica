@@ -116,7 +116,7 @@ public class PrincipalEmpresa {
                                                                 pr.crearProgramacion();
                                                                 break;
                                                             }
-                                                        }
+                                                        } // Si no se encontró ninguna sala
                                                         if(salaParaProgramacion == false){
                                                             JOptionPane.showMessageDialog(null, 
                                                                     "No se puede crear una programacion si no hay una sals registrada",

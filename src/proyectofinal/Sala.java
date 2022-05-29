@@ -28,8 +28,8 @@ public class Sala{
     @author José Manuel Quintero Rodriguez*/
     public Sala() {
         numeroSala = 0;
-        cantidadFilas = 0;
-        sillasPorFila = 0;
+        cantidadFilas = 5;
+        sillasPorFila = 5;
         valorBoleta = 0;
     }
     
@@ -40,8 +40,6 @@ public class Sala{
         numeroSala = Integer.parseInt(JOptionPane.showInputDialog("Ingrese identificador de la sala"));
 //        cantidadFilas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de filas"));
 //        sillasPorFila = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de sillas por fila"));
-        cantidadFilas = 5;
-        sillasPorFila = 5;
         do {
             valorBoleta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese valor de la boleta"));
             if(valorBoleta < 0){
