@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 /**
  * Fecha de creacion: 3 de mayo
  *
- * @authores Jose Manuel Quintero Rodríguez
+ * @authores Jose Manuel Quintero Rodríguez, Juan Angel Riano Quintero
  * 
  * Esta clase se encarga de pedir los datos de un complejo, ingresar un numero no mayor a 10 de salas
  * mostrar el mapa de la sala mediante especificación de identificador, reservar una silla en una sala,
@@ -17,16 +17,13 @@ public class Complejo {
     
     // Atributos de la clase
     String nombre, direccion, nombreAdmin;
-    int numSalas;
-    /* Crear arreglo de tipo sala que almacenará como máximo 10 salas por complejo,
-    En este caso se dejó indicado el indice del número de salas*/
+    /* Crear arreglo de tipo sala que almacenará como máximo 10 salas por complejo
+    En este caso se dejó indicado el indice del numero de salas*/
     Sala[] salas = new Sala[2];
     Sala sl = new Sala();
     
-    /**
-     * Método constructor que inicializa los valores de los atributos.
-     * @author José Manuel Quintero Rodriguez
-    */
+    /* Método constructor que inicializa los valores de los atributos
+    @author José Manuel Quintero Rodriguez*/
     public Complejo() {
 //        numSalas = 0;
         nombre = "";
@@ -34,10 +31,8 @@ public class Complejo {
         nombreAdmin = "";
     }
 
-    /**
-     * Este método se encarga de pedir los datos del Complejo en general.
-     * @author José Manuel Quintero Rodríguez
-    */
+    /* Este método se encarga de pedir los datos del Complejo en general
+    @author José Manuel Quintero Rodríguez*/
     public void pedirInfoComplejo() {
         nombre = JOptionPane.showInputDialog("Ingrese nombre del complejo");
         direccion = JOptionPane.showInputDialog("Ingrese direccion");
@@ -50,11 +45,9 @@ public class Complejo {
 //        salas = new Sala[numSalas];
     }
 
-    /**
-     * Este método se encarga de crear un objeto de tipo Sala, pedir los datos del mismo
-     * y validar que el objeto de la sala no esté repetido mediante su ID.
-     * @author José Manuel Quintero Rodríguez
-    */
+    /* Este método se encarga de crear un objeto de tipo Sala, pedir los datos del mismo
+    y validar que el objeto de la sala no esté repetido mediante su ID
+    @author José Manuel Quintero Rodríguez*/
     public void ingresarSala() {
 //        Sala sl = new Sala();
 //        sl.pedirInfoSala();
