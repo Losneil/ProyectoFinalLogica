@@ -1,4 +1,3 @@
-
 package proyectofinal;
 import javax.swing.JOptionPane;
 // Estos formatos sirven para determinar la hora y la fecha actuales
