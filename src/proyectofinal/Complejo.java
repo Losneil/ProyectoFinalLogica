@@ -146,7 +146,6 @@ public class Complejo {
             JOptionPane.showMessageDialog(null, "No se encontró la sala", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
-
     /* Este método se encarga de calcular el valor de recaudo por ganancias en un dia
     @author Jose Manuel Quintero Rodriguez*/
     public double calcularValorRecaudo() {

@@ -91,8 +91,6 @@ public class PrincipalEmpresa {
                                                     case 2:
                                                         if (complejos[0] != null) {
                                                             cp.ingresarSala();
-//                                                            idSala = Integer.parseInt(JOptionPane.showInputDialog("Ingrese id de la sala"));
-//                                                            cp.buscarSala(idSala);
                                                         } else {
                                                             JOptionPane.showMessageDialog(null, "Para registrar una sala "
                                                                     + "\ntiene que haber al menos un complejo registrado", "ERROR",
@@ -206,7 +204,7 @@ public class PrincipalEmpresa {
                                                             break;
                                                     }
                                                 } catch (NumberFormatException ex) { // Capturamos la excepcion en caso de que haya ingresado una cadena
-                                                    JOptionPane.showMessageDialog(null, "No se permiten caracteres vacios",
+                                                    JOptionPane.showMessageDialog(null, "No se permiten caracteres especiales",
                                                             "ERROR", JOptionPane.ERROR_MESSAGE);
                                                 }
                                             } while (opcionesCajero != 6);

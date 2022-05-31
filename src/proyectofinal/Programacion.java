@@ -1,6 +1,5 @@
 package proyectofinal;
 
-import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 /**
@@ -16,8 +15,7 @@ public class Programacion {
     // Atributos de la clase
     int sillasReservadas;
     // Establecemos el formato de la hora para el horario
-    LocalTime horario = LocalTime.now();
-    String nombrePelicula;
+    String nombrePelicula, horario;
     int numeroSala;
     boolean sillas[][] = new boolean[5][5];
     
@@ -29,6 +27,8 @@ public class Programacion {
     @author Jose Manuel Quintero Rodriguez*/
     public Programacion(int ns) {
         this.numeroSala = ns;
+        nombrePelicula = "";
+        horario = "";
     }
     
     public void crearProgramacion(){
@@ -42,15 +42,9 @@ public class Programacion {
 //        }
 //        numeroSala = (JOptionPane.showInputDialog(null, "Elija el numero de la sala", "Salas",
 //                JOptionPane.PLAIN_MESSAGE, null, new Object[]{"Seleccionar", listaSalas}, "")).toString();
-        String listadoSalas = "";
-        for (int i = 0; i < cp.salas.length; i++) {
-            if(this.numeroSala == cp.salas[i].numeroSala){
-                listadoSalas += cp.salas[i].numeroSala;
-            } else {
-                JOptionPane.showMessageDialog(null, "Esa sala no existe");
-            }
-        }
+        numeroSala = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de la sala para programacion"));
         nombrePelicula = JOptionPane.showInputDialog("Ingrese nombre de la pelicula");
+        horario = JOptionPane.showInputDialog("Especifique el horario para esta programacion");
         // Generar el mapa de la sala sin asientos ocupados
         for (int i = 0; i < sl.cantidadFilas; i++) {
             for (int j = 0; j < sl.sillasPorFila; j++) {
