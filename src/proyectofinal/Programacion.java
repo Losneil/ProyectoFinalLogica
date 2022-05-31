@@ -1,19 +1,18 @@
+
 package proyectofinal;
 
-import javax.swing.JOptionPane;
-// Importar el formato que genera la hora actual en la que se ejecuta el programa
 import java.time.LocalTime;
+import javax.swing.JOptionPane;
 
 /**
  * Fecha de creacion: 9 de mayo
- *
- * @authores Jose Manuel Quintero Rodriguez
+ * @author Jose Manuel Quintero Rodriguez
  * 
- * Para esta clase necesitamos tomar el atributo id de sala por lo cual se hace la herencia de la clase Sala
- * Esta clase también se encarga de mostrar la programación del día, mostrar la información completa de una 
- * pelicula y actualizar los datos de una pelicula especifica.
+ * Esta clase, representa la programación que posee cualquier sala de un complejo,
+ * o la programación de todo el complejo en general.
+ * 
  */
-public class Programacion{
+public class Programacion {
 
     // Atributos de la clase
     int sillasReservadas;

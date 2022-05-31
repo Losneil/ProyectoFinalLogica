@@ -111,14 +111,14 @@ public class PrincipalEmpresa {
                                                     case 5:
 //                                                        boolean salaParaProgramacion = false;
 //                                                        for (int i = 0; i < cp.salas.length; i++) {
-//                                                            if(cp.salas[i] != null){
+//                                                            if (cp.salas[i] != null) {
 //                                                                salaParaProgramacion = true;
 //                                                                pr.crearProgramacion();
 //                                                                break;
 //                                                            }
 //                                                        } // Si no se encontró ninguna sala
-//                                                        if(salaParaProgramacion == false){
-//                                                            JOptionPane.showMessageDialog(null, 
+//                                                        if (salaParaProgramacion == false) {
+//                                                            JOptionPane.showMessageDialog(null,
 //                                                                    "No se puede crear una programacion si no hay una sals registrada",
 //                                                                    "ERROR", JOptionPane.ERROR_MESSAGE);
 //                                                        }
@@ -226,7 +226,6 @@ public class PrincipalEmpresa {
                     }
                 }
             }
-
             seguir = JOptionPane.showConfirmDialog(null, "¿Quiere terminar el programa?", "Confirmar", JOptionPane.YES_NO_OPTION);
         } while (seguir == JOptionPane.NO_OPTION);
     }
