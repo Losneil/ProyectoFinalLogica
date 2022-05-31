@@ -17,7 +17,6 @@ public class PrincipalEmpresa {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Programacion pr = new Programacion();
         Complejo cp = new Complejo();
         Reserva rv = new Reserva();
         Empresa ep = new Empresa();
@@ -81,10 +80,9 @@ public class PrincipalEmpresa {
                                                         + "\n2. Registrar sala a un complejo especifico"
                                                         + "\n3. Almacenar datos de una pelicula"
                                                         + "\n4. Modificar datos de una pelicula"
-                                                        + "\n5. Crear programación"
-                                                        + "\n6. Obtener porcentaje de ocupacion en cada sala"
-                                                        + "\n7. Obtener el total de ganancias por boletas"
-                                                        + "\n8. Salir"));
+                                                        + "\n5. Obtener porcentaje de ocupacion en cada sala"
+                                                        + "\n6. Obtener el total de ganancias por boletas"
+                                                        + "\n7. Salir"));
                                                 switch (opcionesAdministrador) {
                                                     case 1:
                                                         complejos[0] = new Complejo();
@@ -108,7 +106,7 @@ public class PrincipalEmpresa {
                                                         peliEspecifica = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
                                                         ep.actualizarDatosPelicula(peliEspecifica);
                                                         break;
-                                                    case 5:
+//                                                    case 5:
 //                                                        boolean salaParaProgramacion = false;
 //                                                        for (int i = 0; i < cp.salas.length; i++) {
 //                                                            if (cp.salas[i] != null) {
@@ -122,9 +120,8 @@ public class PrincipalEmpresa {
 //                                                                    "No se puede crear una programacion si no hay una sals registrada",
 //                                                                    "ERROR", JOptionPane.ERROR_MESSAGE);
 //                                                        }
-                                                        pr.crearProgramacion();
-                                                        break;
-                                                    case 6:
+//                                                        break;
+                                                    case 5:
                                                         boolean salaParaPorcentaje = false;
                                                         for (int i = 0; i < cp.salas.length; i++) { // Recorremos el arreglo de objetos tipo Sala
                                                             if (cp.salas[i] != null) { // Verificamos que si exista el objeto de la sala en la posición indicada
@@ -143,7 +140,7 @@ public class PrincipalEmpresa {
                                                             JOptionPane.showMessageDialog(null, listadoPorcentajes);
                                                         }
                                                         break;
-                                                    case 7:
+                                                    case 6:
                                                         JOptionPane.showMessageDialog(null, "El valor del recaudo por venta de boletas es: " + cp.calcularValorRecaudo());
                                                         break;
                                                     default:
@@ -153,7 +150,7 @@ public class PrincipalEmpresa {
                                                 JOptionPane.showMessageDialog(null, "No se permiten caracteres",
                                                         "ERROR", JOptionPane.ERROR_MESSAGE);
                                             }
-                                        } while (opcionesAdministrador != 8);
+                                        } while (opcionesAdministrador != 7);
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Autenticación fallida, intente nuevamente"
                                                 + "", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -182,7 +179,7 @@ public class PrincipalEmpresa {
                                                     switch (opcionesCajero) {
                                                         case 1:
                                                             idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
-                                                            pr.mostrarMapaProgramado(idSala);
+//                                                            pr.mostrarMapaProgramado(idSala);
                                                             //sl.mostrarProgramacion();
                                                             break;
                                                         case 2:
