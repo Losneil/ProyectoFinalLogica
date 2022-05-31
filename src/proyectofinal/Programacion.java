@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Fecha de creacion: 9 de mayo
- * @author Jose Manuel Quintero Rodriguez
+ * @author Jose Manuel Quintero Rodriguez, Juan Angel Riaño
  * 
  * Esta clase, representa la programación que posee cualquier sala de un complejo,
  * o la programación de todo el complejo en general.
