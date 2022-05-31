@@ -109,19 +109,20 @@ public class PrincipalEmpresa {
                                                         ep.actualizarDatosPelicula(peliEspecifica);
                                                         break;
                                                     case 5:
-                                                        boolean salaParaProgramacion = false;
-                                                        for (int i = 0; i < cp.salas.length; i++) {
-                                                            if(cp.salas[i] != null){
-                                                                salaParaProgramacion = true;
-                                                                pr.crearProgramacion();
-                                                                break;
-                                                            }
-                                                        } // Si no se encontró ninguna sala
-                                                        if(salaParaProgramacion == false){
-                                                            JOptionPane.showMessageDialog(null, 
-                                                                    "No se puede crear una programacion si no hay una sals registrada",
-                                                                    "ERROR", JOptionPane.ERROR_MESSAGE);
-                                                        }
+//                                                        boolean salaParaProgramacion = false;
+//                                                        for (int i = 0; i < cp.salas.length; i++) {
+//                                                            if(cp.salas[i] != null){
+//                                                                salaParaProgramacion = true;
+//                                                                pr.crearProgramacion();
+//                                                                break;
+//                                                            }
+//                                                        } // Si no se encontró ninguna sala
+//                                                        if(salaParaProgramacion == false){
+//                                                            JOptionPane.showMessageDialog(null, 
+//                                                                    "No se puede crear una programacion si no hay una sals registrada",
+//                                                                    "ERROR", JOptionPane.ERROR_MESSAGE);
+//                                                        }
+                                                        pr.crearProgramacion();
                                                         break;
                                                     case 6:
                                                         boolean salaParaPorcentaje = false;
