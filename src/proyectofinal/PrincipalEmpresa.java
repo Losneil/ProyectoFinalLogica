@@ -21,6 +21,7 @@ public class PrincipalEmpresa {
         Reserva rv = new Reserva();
         Empresa ep = new Empresa();
         Sala sl = new Sala();
+        Programacion pr = new Programacion(sl.numeroSala);
         // Asignamos un complejo para hacer la prueba de que no se registren las salas
         Complejo[] complejos = new Complejo[1];
 
@@ -177,8 +178,8 @@ public class PrincipalEmpresa {
                                                     switch (opcionesCajero) {
                                                         case 1:
                                                             idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
-//                                                            pr.mostrarMapaProgramado(idSala);
-                                                            //sl.mostrarProgramacion();
+                                                            pr.mostrarMapaProgramado(idSala);
+                                                              sl.mostrarProgramacion();
                                                             break;
                                                         case 2:
                                                             try {
@@ -194,7 +195,7 @@ public class PrincipalEmpresa {
                                                             break;
                                                         case 4:
                                                             idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
-                                                            cp.reservarSilla(idSala);
+                                                            pr.reservarAsiento(idSala);
                                                             break;
                                                         case 5:
                                                             rv.pedirDatosBoleta();

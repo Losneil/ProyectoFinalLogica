@@ -2,13 +2,15 @@ package proyectofinal;
 
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+
 /**
  * Fecha de creacion: 9 de mayo
+ *
  * @author Jose Manuel Quintero Rodriguez, Juan Angel Riaño
- * 
- * Esta clase, representa la programación que posee cualquier sala de un complejo,
- * o la programación de todo el complejo en general.
- * 
+ *
+ * Esta clase, representa la programación que posee cualquier sala de un
+ * complejo, o la programación de todo el complejo en general.
+ *
  */
 public class Programacion {
 
@@ -17,12 +19,12 @@ public class Programacion {
     // Establecemos el formato de la hora para el horario
     String nombrePelicula, horario;
     int numeroSala;
-    boolean sillas[][] = new boolean[5][5];
-    
+
     Pelicula pl = new Pelicula();
     Complejo cp = new Complejo();
     Sala sl = new Sala();
-    
+    boolean sillas[][] = new boolean[sl.cantidadFilas][sl.sillasPorFila];
+
     /*Este método constructor se encarga de realizar asignación de valores a los atributos
     @author Jose Manuel Quintero Rodriguez*/
     public Programacion(int ns) {
@@ -30,8 +32,8 @@ public class Programacion {
         nombrePelicula = "";
         horario = "";
     }
-    
-    public void crearProgramacion(){
+
+    public void crearProgramacion() {
         // Creamos una lista de arreglos que tomará los id de las salas
 //        ArrayList<Integer> listaSalas = new ArrayList<Integer>();
 //        try {
@@ -60,9 +62,45 @@ public class Programacion {
         }
         JOptionPane.showMessageDialog(null, espacios);
     }
-    
+
+    // Metodo nuevo de hoy 2 de junio
+    public void reservarAsiento(int id) {
+        boolean seEncontroSala = true;
+        int espFila, espColumna;
+        for (int i = 0; i < cp.salas.length; i++) {
+            if (id == cp.salas[i].numeroSala) {
+                seEncontroSala = true;
+                do {
+                    espFila = Integer.parseInt(JOptionPane.showInputDialog("Dime el numero de fila"));
+                    if (espFila < 0 || espFila > sillas.length - 1) {
+                        JOptionPane.showMessageDialog(null, "No se permite el número", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } while (espFila < 0 || espFila > sillas.length - 1);
+                do {
+                    espColumna = Integer.parseInt(JOptionPane.showInputDialog("Dime el numero de columna"));
+                    if (espColumna < 0 || espColumna > sillas[0].length - 1) {
+                        JOptionPane.showMessageDialog(null, "No se permite el número", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } while (espColumna < 0 || espColumna > sillas[0].length - 1);
+                sillas[espFila][espColumna] = false;
+            }
+        }
+        if (seEncontroSala == false) {
+            JOptionPane.showMessageDialog(null, "No se encontró la sala", "WARNING", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String cadena = "";
+            for (int i = 0; i < sillas.length; i++) {
+                for (int j = 0; j < sillas[0].length; j++) {
+                    cadena += sillas[i][j] + " ";
+                }
+                cadena += "\n";
+            }
+            JOptionPane.showMessageDialog(null, cadena);
+        }
+    }
+
     /*Método encargado de mostrar el mapa de una sala en un estado temporal durante la programacion de un filme*/
-    public void mostrarMapaProgramado(int idSala){
+    public void mostrarMapaProgramado(int idSala) {
         boolean existencia = false;
         String muestreMapa = "";
         for (int i = 0; i < cp.salas.length; i++) { // Recorremos el arreglo de la sala
@@ -73,7 +111,7 @@ public class Programacion {
                         for (int k = 0; k < cp.salas[i].sillasPorFila; k++) {
                             try {
                                 muestreMapa += sl.programaciones[i].sillas[j][k] + " ";
-                            } catch(NullPointerException ex){
+                            } catch (NullPointerException ex) {
                                 JOptionPane.showMessageDialog(null, "No existen programaciones registradas");
                             }
                         }
