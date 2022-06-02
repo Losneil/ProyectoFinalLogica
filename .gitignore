@@ -6,3 +6,10 @@
 *.class
 *.class
 *.class
+nbproject/private/private.properties
+*.class
+*.class
+*.class
+build/classes/proyectofinal/PrincipalEmpresa.class
+build/classes/proyectofinal/Programacion.class
+build/classes/proyectofinal/Reserva.class
