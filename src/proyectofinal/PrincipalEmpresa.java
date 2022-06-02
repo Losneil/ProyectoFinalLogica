@@ -23,11 +23,10 @@ public class PrincipalEmpresa {
         Sala sl = new Sala();
         Programacion pr = new Programacion(sl.numeroSala);
         // Asignamos un complejo para hacer la prueba de que no se registren las salas
-        Complejo[] complejos = new Complejo[1];
 
         String nomPrincipal = "", contraPrincipal = "", buscarPelicula, peliEspecifica, listadoPorcentajes = "";
         int opcionesCajero = 0, opcionesAdministrador = 0, numeroPersonas, idSala, seguir, numUso, numUsuario;
-        int registroUnico = 0; // Indicador de primero registro
+        int registroUnico = 0, /*Indicador de primer registro*/ numeroComplejos, numeroPeliculas;
 
         try {
             do { // Ingresando credenciales al iniciar la ejecución del programa
@@ -86,11 +85,12 @@ public class PrincipalEmpresa {
                                                         + "\n7. Salir"));
                                                 switch (opcionesAdministrador) {
                                                     case 1:
-                                                        complejos[0] = new Complejo();
-                                                        complejos[0].pedirInfoComplejo();
+                                                        numeroComplejos = Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos complejos quiere registrar?"));
+                                                        ep.definirCantComplejos(numeroComplejos);
+                                                        
                                                         break;
                                                     case 2:
-                                                        if (complejos[0] != null) {
+                                                        if (ep.complejos[0] != null) {
                                                             cp.ingresarSala();
                                                         } else {
                                                             JOptionPane.showMessageDialog(null, "Para registrar una sala "
@@ -99,7 +99,8 @@ public class PrincipalEmpresa {
                                                         }
                                                         break;
                                                     case 3:
-                                                        ep.ingresarPelicula();
+                                                        numeroPeliculas = Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos complejos quiere registrar?"));
+                                                        ep.ingresarPelicula(numeroPeliculas);
                                                         break;
                                                     case 4:
                                                         peliEspecifica = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
