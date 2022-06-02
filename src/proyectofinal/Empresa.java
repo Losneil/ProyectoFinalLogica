@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 /**
  * Fecha de creacion: 27 de mayo
  *
- * @author
+ * @author José Manuel Quintero Rodriguez
  */
 public class Empresa {
 
@@ -17,8 +17,28 @@ public class Empresa {
         @author José Manuel Quintero Rodriguez*/
     
     /* Este método se encarga de definir un numero de complejos para registrar y los registra*/
-    public void definirCantComplejos(int numero) {
+    public void ingresarComplejo(int numero) {
         complejos = new Complejo[numero];
+        for (int i = 0; i < numero; i++) {
+            if (complejos[i] == null) { // Primero verificamos que no halla un objeto Pelicula en esta posicion
+                // En la posicion i agregamos un nuevo objeto de pelicula con datos inicializados
+                complejos[i] = new Complejo();
+                // Solicitamos informacion de la pelicula
+                complejos[i].pedirInfoComplejo();
+                /* Ciclo que ayuda a comprobar que no hallan peliculas a proyectar en el mismo horario
+                en la sala que se está gestionando*/
+                for (int j = 0; j < i; j++) {
+                    if (complejos[j].nombre.equals(complejos[i].nombre)) {
+                        JOptionPane.showMessageDialog(null, "Ya existe un comeplejo con ese nombre", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                        i--; // Pasamos a la posicion anterior y volvemos a la misma para sobreescribir el nombre
+                        break; // Aqui rompemos el ciclo interno que maneja el iterador j
+                    }
+                }
+            } else { // Condicional que evalua si el arreglo de objetos Complejo está lleno
+                JOptionPane.showMessageDialog(null, "No se pueden registrar mas peliculas", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                break;
+            }
+        }
     }
 
     public void registrarUsuarios() {
@@ -53,10 +73,10 @@ public class Empresa {
                 // Solicitamos informacion de la pelicula
                 peliculas[i].pedirInfoPelicula();
                 /* Ciclo que ayuda a comprobar que no hallan peliculas a proyectar en el mismo horario
-                                en la sala que se está gestionando*/
+                en la sala que se está gestionando*/
                 for (int j = 0; j < i; j++) {
                     if (peliculas[j].nomEspanol.equals(peliculas[i].nomEspanol)) {
-                        JOptionPane.showMessageDialog(null, "Ya existe esta pelicula en la programacion", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Ya existe una pelicula con ese nombre", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                         i--; // Pasamos a la posicion anterior y volvemos a la misma para sobreescribir el nombre
                         break; // Aqui rompemos el ciclo interno que maneja el iterador j
                     }

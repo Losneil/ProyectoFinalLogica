@@ -86,8 +86,7 @@ public class PrincipalEmpresa {
                                                 switch (opcionesAdministrador) {
                                                     case 1:
                                                         numeroComplejos = Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos complejos quiere registrar?"));
-                                                        ep.definirCantComplejos(numeroComplejos);
-                                                        
+                                                        ep.ingresarComplejo(numeroComplejos);
                                                         break;
                                                     case 2:
                                                         if (ep.complejos[0] != null) {
