@@ -35,15 +35,16 @@ public class Programacion {
 
     public void crearProgramacion() {
         // Creamos una lista de arreglos que tomará los id de las salas
-//        ArrayList<Integer> listaSalas = new ArrayList<Integer>();
-//        try {
-//            listaSalas.add(cp.salas[0].programaciones[0].numeroSala);
-//            listaSalas.add(cp.salas[1].programaciones[1].numeroSala);
-//        } catch (NullPointerException e) {
-//            JOptionPane.showMessageDialog(null, "Hay un error de tipo " + e);
-//        }
-//        numeroSala = (JOptionPane.showInputDialog(null, "Elija el numero de la sala", "Salas",
+        try {
+            
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Hay un error de tipo " + e);
+        }
+        for (int i = 0; i < cp.salas.length; i++) {
+//            numeroSala = (JOptionPane.showInputDialog(null, "Elija el numero de la sala", "Salas",
 //                JOptionPane.PLAIN_MESSAGE, null, new Object[]{"Seleccionar", listaSalas}, "")).toString();
+        }
+        
         numeroSala = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de la sala para programacion"));
         nombrePelicula = JOptionPane.showInputDialog("Ingrese nombre de la pelicula");
         horario = JOptionPane.showInputDialog("Especifique el horario para esta programacion");
