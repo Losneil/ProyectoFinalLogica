@@ -4,16 +4,16 @@ package proyectofinal;
 import javax.swing.JOptionPane;
 
 /**
- * Fecha de creacion: 3 de mayo
- *
- * Esta clase se encarga de pedir los datos correspodientes a una sala, teniendo en cuenta que para registrar una sala tiene que haber al menos un complejo registrado,
- * en donde al suministrar los datos correspodiente detallamos la forma en como será el mapa de respectiva sala,
- * esta clase también se encarga de calcular el porcentaje de ocupación.
- * 
- * @author Jose Manuel Quintero Rodríguez.
- * @author Juan Ángel Riaño Quintero.
- *
- */
+   * Fecha de creacion: 3 de mayo
+   *
+   * Esta clase se encarga de pedir los datos correspodientes a una sala, teniendo en cuenta que para registrar una sala tiene que haber al menos un complejo registrado,
+   * en donde al suministrar los datos correspodiente detallamos la forma en como será el mapa de respectiva sala,
+   * esta clase también se encarga de calcular el porcentaje de ocupación.
+   * 
+   * @author Jose Manuel Quintero Rodríguez.
+   * @author Juan Ángel Riaño Quintero.
+   *
+   */
 public class Sala {
 
 	 // Atributos de la clase.
@@ -62,7 +62,7 @@ public class Sala {
 				 if (programaciones[i] == null) {				
 
 						programaciones[i] = new Programacion(numeroSala);
-						programaciones[i].crearProgramacion();
+						programaciones[i].pedirDatosProgramacion();
 				 }
 			 }
 	 }
@@ -84,11 +84,11 @@ public class Sala {
 				 // Verificamos que el objeto Película en la posición indicada, exista en el arreglo.
 				 if (programaciones[i] != null) { 						 
 
-						if (programaciones[i].pl.actividad == true) {
+						if (programaciones[i].peli.actividad == true) {
 
 							 // Indicamos si la pelicula está activa para agregarla a la programación.
 							 existencia = true;
-							 listadoPeliculas += (i + 1) + ". " + programaciones[i].pl.nomEspanol
+							 listadoPeliculas += (i + 1) + ". " + programaciones[i].peli.nomEspanol
 							 + "\nHorario: " + programaciones[i].horario + "\nNumero de la sala: " + numeroSala;
 						 }
 				 }

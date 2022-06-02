@@ -48,7 +48,7 @@ public class Pelicula {
 	 public void pedirInfoPelicula() {
 
 			int indicadorActividad;
-			nomEspanol = JOptionPane.showInputDialog("Ingrese nombre en español");
+			nomEspanol = JOptionPane.showInputDialog("Ingrese el nombre de la película en español: ");
 
 			do {
 				 anioEstreno = Integer.parseInt(JOptionPane.showInputDialog("¿En que año se estrenó?"));

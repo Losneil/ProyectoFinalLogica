@@ -17,6 +17,7 @@ public class Programacion {
 	 int sillasReservadas;
 	 String horario;
 	 int numeroSala;
+	 Pelicula peli;
 
 	 // La matriz de sillas[], siempre será una matriz 5x5, osea que todas las salas tendran el mismo tamaño.
 	 boolean sillas[][] = new boolean[5][5];
@@ -39,7 +40,13 @@ public class Programacion {
 			sillasReservadas = 0;
 	  }
 
-
+	 public void pedirDatosProgramacion() {
+			
+			peli = new Pelicula();
+			peli.pedirInfoPelicula();
+			horario = JOptionPane.showInputDialog("Ingrese la hora en la que se proyectará la película: ");
+			
+	 }
 
 
 //	 public void crearProgramacion() {
