@@ -49,7 +49,6 @@ public class Complejo {
         nombre = JOptionPane.showInputDialog("Ingrese nombre del complejo");
         direccion = JOptionPane.showInputDialog("Ingrese direccion");
         nombreAdmin = JOptionPane.showInputDialog("Ingrese nombre del administrador");
-
 //        do{
 //            numSalas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de salas a registrar"));
 //            if(numSalas > 10)
@@ -62,15 +61,6 @@ public class Complejo {
 		y validar que el objeto de la sala no esté repetido mediante su ID
 		@author José Manuel Quintero Rodríguez*/
     public void ingresarSala() {
-//        Sala sl = new Sala();
-//        sl.pedirInfoSala();
-//        
-//        if(this.buscarSala(sl.numeroSala) == null){
-//            salas[iterador] = sl;
-//            iterador++;
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Ya existe");
-//        }
         for (int i = 0; i < salas.length; i++) {
             if (salas[i] == null) {
                 salas[i] = new Sala(); // Creamos un objeto de tipo sala con datos inicializados y lo guardamos en la posicion i

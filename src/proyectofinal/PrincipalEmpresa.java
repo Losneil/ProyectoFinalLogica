@@ -19,10 +19,8 @@ public class PrincipalEmpresa {
     public static void main(String[] args) {
         Complejo cp = new Complejo();
         Reserva rv = new Reserva();
-        Empresa ep = new Empresa();
-        Sala sl = new Sala();
+        Empresa ep;
         // Asignamos un complejo para hacer la prueba de que no se registren las salas
-        Complejo[] complejos = new Complejo[1];
 
         String nomPrincipal = "", contraPrincipal = "", buscarPelicula, peliEspecifica, listadoPorcentajes = "";
         int opcionesCajero = 0, opcionesAdministrador = 0, numeroPersonas, idSala, seguir, numUso, numUsuario;
@@ -42,9 +40,12 @@ public class PrincipalEmpresa {
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "No se permiten datos vacios", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-
+        int numeroPeliculas, numeroComplejos;
+        numeroComplejos = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de complejos a registrar"));
+        numeroPeliculas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de peliculas a registrar"));
+        ep = new Empresa(numeroComplejos, numeroPeliculas);
         String nombre, clave; // variables que se pasaran como parametros al metodo de autenticaciopn
-        String[] opcionUso = {"Registrar usuarios", "Ingresar con usuario especifico"}; //Arreglo para las opciones de botón de acción
+        String[] opcionUso = {"Realizar registros", "Ingresar con usuario especifico"}; //Arreglo para las opciones de botón de acción
         String[] nombreUsuario = {"Administrador", "Cajero"}; //Arreglo para las opciones de botón de tipo de usuario
 
         do { // Una vez validadas las credenciales damos funcionalidades propias para un gerente o administrador principal
@@ -53,11 +54,11 @@ public class PrincipalEmpresa {
                         0, JOptionPane.QUESTION_MESSAGE, null, opcionUso, "");
                 boolean autentiAdmin = false;
                 boolean autentiCajero = false;
-                if (numUso == 0 && registroUnico == 0) { // Si se seleccionó la opción de registrar usuarios
+                if (numUso == 0 && registroUnico == 0) { // Si se seleccionó la opción de realizar registros
                     ep.registrarUsuarios(); // Invocar el metodo de registrar usuarios, cabe destacar que se invoca solo una vez
+                    // Si se ha hecho el registro de los dos usuarios, no se permitirá realizar un segundo registro de usuarios
                     registroUnico++;
-                    /* Si se ha hecho el registro de los dos usuarios, 
-																		no se permitirá realizar un segundo registro de usuarios*/
+                    // Pedimos las cantidades necesarias para los controles de ingresos de datos
                 } else {
                     if (numUso == 0 && registroUnico != 0) {
                         JOptionPane.showMessageDialog(null, "No se permite realizar más registros", "ADVERTENCIA",
@@ -85,25 +86,32 @@ public class PrincipalEmpresa {
                                                         + "\n7. Salir"));
                                                 switch (opcionesAdministrador) {
                                                     case 1:
-                                                        int iteradorPorAparte = 0;
-                                                        for (int i = 0; i < ep.complejos.length; i++) {
-                                                            if (complejos[i] == null) {
-                                                                complejos[i] = new Complejo();
-                                                                complejos[i].pedirInfoComplejo();
-                                                                iteradorPorAparte++;
-                                                                break;
+                                                        int iterador;
+                                                        for (iterador = 0; iterador < ep.complejos.length; iterador++) {
+                                                            if (ep.complejos[iterador] == null && iterador < numeroComplejos) {
+                                                                ep.complejos[iterador] = new Complejo();
+                                                                ep.complejos[iterador].pedirInfoComplejo();
+                                                            } else {
+                                                                if (iterador >= numeroComplejos) {
+                                                                    JOptionPane.showMessageDialog(null, "No se permite ingresar mas complejos",
+                                                                            "ADVERTENCIA", JOptionPane.ERROR_MESSAGE);
+                                                                    break;
+                                                                }
                                                             }
                                                         }
+
                                                         break;
                                                     case 2:
                                                         boolean existeComplejo = false;
                                                         for (int i = 0; i < ep.complejos.length; i++) {
-                                                            if (complejos[i] != null) {
-                                                                existeComplejo = true;
-                                                                JOptionPane.showMessageDialog(null, "Ingresar sala para el complejo: " + (i + 1));
-                                                                cp.ingresarSala();
-                                                                break;
-                                                            } else {
+                                                            try {
+                                                                if (ep.complejos[i] != null) {
+                                                                    existeComplejo = true;
+                                                                    JOptionPane.showMessageDialog(null, "Ingresar sala para el complejo: " + (i + 1));
+                                                                    cp.ingresarSala();
+                                                                    break;
+                                                                }
+                                                            } catch (ArrayIndexOutOfBoundsException e) {
                                                                 JOptionPane.showMessageDialog(null, "No existe el complejo " + (i + 1));
                                                             }
                                                         }

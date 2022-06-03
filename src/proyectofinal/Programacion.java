@@ -1,56 +1,61 @@
-
 package proyectofinal;
 
 import javax.swing.JOptionPane;
 
 /**
-   * Fecha de creacion: 9 de mayo
-   *
-   * Esta clase, representa la programación que posee cualquier sala de un complejo, o la programación de todo el complejo en general.
-   * @author Jose Manuel Quintero Rodriguez.
-   * @author Juan Ángel Riaño Quintero.
-   *
-   */
+ * Fecha de creacion: 9 de mayo
+ *
+ * Esta clase, representa la programación que posee cualquier sala de un
+ * complejo, o la programación de todo el complejo en general.
+ *
+ * @author Jose Manuel Quintero Rodriguez.
+ * @author Juan Ángel Riaño Quintero.
+ *
+ */
 public class Programacion {
 
-	 // Atributos de la clase.
-	 int sillasReservadas;
-	 String horario;
-	 int numeroSala;
-	 Pelicula peli;
+    // Atributos de la clase.
+    int sillasReservadas;
+    String horario;
+    int numeroSala;
+    Pelicula peli;
 
-	 // La matriz de sillas[], siempre será una matriz 5x5, osea que todas las salas tendran el mismo tamaño.
-	 boolean sillas[][] = new boolean[5][5];
+    // La matriz de sillas[], siempre será una matriz 5x5, osea que todas las salas tendran el mismo tamaño.
+    boolean sillas[][] = new boolean[5][5];
 
 //	 Pelicula pl = new Pelicula();
 //	 Complejo cp = new Complejo();
 //	 Sala sl = new Sala();
+    /**
+     * Este método constructor se encarga de realizar asignación de valores a
+     * los atributos.
+     *
+     * @author Jose Manuel Quintero Rodriguez.
+     *
+     * @param numeroSala es el ID de la sala a la cual pertenece la
+     * programación.
+     *
+     */
+    public Programacion(int numeroSala) {
 
-	 /**
-		 * Este método constructor se encarga de realizar asignación de valores a los atributos.
-		 * @author Jose Manuel Quintero Rodriguez. 
-		 * 
-		 * @param numeroSala es el ID de la sala a la cual pertenece la programación. 
-		 * 
-		 */
-	 public Programacion(int numeroSala) {
+        this.numeroSala = numeroSala;
+        horario = "";
+        sillasReservadas = 0;
+    }
 
-			this.numeroSala = numeroSala;
-			horario = "";		
-			sillasReservadas = 0;
-	  }
+    public void pedirDatosProgramacion() {
 
-	 public void pedirDatosProgramacion() {
-			
-			peli = new Pelicula();
-			peli.pedirInfoPelicula();
-			horario = JOptionPane.showInputDialog("Ingrese la hora en la que se proyectará la película: ");
-			
-	 }
-
+        peli = new Pelicula();
+        peli.pedirInfoPelicula();
+        if(peli.actividad == true){
+            horario = JOptionPane.showInputDialog("Ingrese la hora en la que se proyectará la película: ");
+        } else {
+            JOptionPane.showMessageDialog(null, "La película no se agregó a la programación");
+        }
+        
+    }
 
 //	 public void crearProgramacion() {
-
 //			String listadoSalas = "";
 //			for (int i = 0; i < cp.salas.length; i++) {
 //				 if (this.numeroSala == cp.salas[i].numeroSala) {
