@@ -62,7 +62,6 @@ public class Sala {
         } while (valorBoleta < 0);
 
         for (int i = 0; i < programaciones.length; i++) {
-
             if (programaciones[i] == null) {
                 programaciones[i] = new Programacion(numeroSala);
                 programaciones[i].pedirDatosProgramacion();

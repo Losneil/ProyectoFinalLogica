@@ -75,59 +75,68 @@ public class PrincipalEmpresa {
                                     if (ep.usuarios[numUsuario].autenticar(nombre, clave)) {
                                         autentiAdmin = true;
                                         do { // Mostrar el menú de opciones para el administrador
-                                            try {
-                                                opcionesAdministrador = Integer.parseInt(JOptionPane.showInputDialog("Elija una opcion"
-                                                        + "\n1. Registrar complejo"
-                                                        + "\n2. Registrar sala a un complejo especifico"
-                                                        + "\n3. Almacenar datos de una pelicula"
-                                                        + "\n4. Modificar datos de una pelicula"
-                                                        + "\n5. Obtener porcentaje de ocupacion en cada sala"
-                                                        + "\n6. Obtener el total de ganancias por boletas"
-                                                        + "\n7. Salir"));
-                                                switch (opcionesAdministrador) {
-                                                    case 1:
-                                                        int iterador;
-                                                        for (iterador = 0; iterador < ep.complejos.length; iterador++) {
-                                                            if (ep.complejos[iterador] == null && iterador < numeroComplejos) {
-                                                                ep.complejos[iterador] = new Complejo();
-                                                                ep.complejos[iterador].pedirInfoComplejo();
-                                                            } else {
-                                                                if (iterador >= numeroComplejos) {
-                                                                    JOptionPane.showMessageDialog(null, "No se permite ingresar mas complejos",
-                                                                            "ADVERTENCIA", JOptionPane.ERROR_MESSAGE);
-                                                                    break;
-                                                                }
+                                            int controlExcep;
+                                            do {
+                                                try {
+                                                    controlExcep = 0;
+                                                    opcionesAdministrador = Integer.parseInt(JOptionPane.showInputDialog("Elija una opcion"
+                                                            + "\n1. Registrar complejo"
+                                                            + "\n2. Registrar sala a un complejo especifico"
+                                                            // + "\n3. Almacenar datos de una pelicula"
+                                                            + "\n3. Modificar datos de una pelicula"
+                                                            + "\n4. Obtener porcentaje de ocupacion en cada sala"
+                                                            + "\n5. Obtener el total de ganancias por boletas"
+                                                            + "\n6. Salir"));
+                                                } catch (NumberFormatException ex) {
+                                                    JOptionPane.showMessageDialog(null, "",
+                                                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                                                    controlExcep = 1;
+                                                }
+                                            } while (controlExcep == 1);
+                                            switch (opcionesAdministrador) {
+                                                case 1:
+                                                    int iterador;
+                                                    for (iterador = 0; iterador < ep.complejos.length; iterador++) {
+                                                        if (ep.complejos[iterador] == null && iterador < numeroComplejos) {
+                                                            ep.complejos[iterador] = new Complejo();
+                                                            ep.complejos[iterador].pedirInfoComplejo();
+                                                        } else {
+                                                            if (iterador >= numeroComplejos) {
+                                                                JOptionPane.showMessageDialog(null, "No se permite ingresar mas complejos",
+                                                                        "ADVERTENCIA", JOptionPane.ERROR_MESSAGE);
+                                                                break;
                                                             }
                                                         }
+                                                    }
 
-                                                        break;
-                                                    case 2:
-                                                        boolean existeComplejo = false;
-                                                        for (int i = 0; i < ep.complejos.length; i++) {
-                                                            try {
-                                                                if (ep.complejos[i] != null) {
-                                                                    existeComplejo = true;
-                                                                    JOptionPane.showMessageDialog(null, "Ingresar sala para el complejo: " + (i + 1));
-                                                                    cp.ingresarSala();
-                                                                    break;
-                                                                }
-                                                            } catch (ArrayIndexOutOfBoundsException e) {
-                                                                JOptionPane.showMessageDialog(null, "No existe el complejo " + (i + 1));
+                                                    break;
+                                                case 2:
+                                                    boolean existeComplejo = false;
+                                                    for (int i = 0; i < ep.complejos.length; i++) {
+                                                        try {
+                                                            if (ep.complejos[i] != null) {
+                                                                existeComplejo = true;
+                                                                JOptionPane.showMessageDialog(null, "Ingresar sala para el complejo " + (i + 1));
+                                                                cp.ingresarSala();
+                                                                break;
                                                             }
+                                                        } catch (ArrayIndexOutOfBoundsException e) {
+                                                            JOptionPane.showMessageDialog(null, "No existe el complejo " + (i + 1));
                                                         }
-                                                        if (existeComplejo == false) {
-                                                            JOptionPane.showMessageDialog(null, "Para registrar una sala "
-                                                                    + "\ntiene que haber al menos un complejo registrado", "ERROR",
-                                                                    JOptionPane.ERROR_MESSAGE);
-                                                        }
-                                                        break;
-                                                    case 3:
-                                                        ep.ingresarPelicula();
-                                                        break;
-                                                    case 4:
-                                                        peliEspecifica = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
-                                                        ep.actualizarDatosPelicula(peliEspecifica);
-                                                        break;
+                                                    }
+                                                    if (existeComplejo == false) {
+                                                        JOptionPane.showMessageDialog(null, "Para registrar una sala "
+                                                                + "\ntiene que haber al menos un complejo registrado", "ERROR",
+                                                                JOptionPane.ERROR_MESSAGE);
+                                                    }
+                                                    break;
+//                                                    case 3:
+//                                                        ep.ingresarPelicula();
+//                                                        break;
+                                                case 3:
+                                                    peliEspecifica = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
+                                                    ep.actualizarDatosPelicula(peliEspecifica);
+                                                    break;
 //                                                    case 5:
 //                                                        boolean salaParaProgramacion = false;
 //                                                        for (int i = 0; i < cp.salas.length; i++) {
@@ -143,36 +152,34 @@ public class PrincipalEmpresa {
 //                                                                    "ERROR", JOptionPane.ERROR_MESSAGE);
 //                                                        }
 //                                                        break;
-                                                    case 5:
-                                                        boolean salaParaPorcentaje = false;
-                                                        for (int i = 0; i < cp.salas.length; i++) { // Recorremos el arreglo de objetos tipo Sala
-                                                            if (cp.salas[i] != null) { // Verificamos que si exista el objeto de la sala en la posición indicada
-                                                                salaParaPorcentaje = true;
-                                                                numeroPersonas = Integer.parseInt(JOptionPane.showInputDialog(""
-                                                                        + "Ingrese numero de personas que visitaron la sala: " + (i + 1)));
-                                                                listadoPorcentajes += "El porcentaje de ocupacion para la sala " + (i + 1) + " es: "
-                                                                        + cp.salas[i].calcularPorcOcupacion(numeroPersonas) + "%\n";
-                                                            } else {
-                                                                JOptionPane.showMessageDialog(null, "No hay salas registradas", "ERROR",
-                                                                        JOptionPane.ERROR_MESSAGE);
-                                                                break;
-                                                            }
-                                                        } // Si se ha encontrado una sala
-                                                        if (salaParaPorcentaje == true) {
-                                                            JOptionPane.showMessageDialog(null, listadoPorcentajes);
+                                                case 4:
+                                                    boolean salaParaPorcentaje = false;
+                                                    for (int i = 0; i < cp.salas.length; i++) { // Recorremos el arreglo de objetos tipo Sala
+                                                        if (cp.salas[i] != null) { // Verificamos que si exista el objeto de la sala en la posición indicada
+                                                            salaParaPorcentaje = true;
+                                                            numeroPersonas = Integer.parseInt(JOptionPane.showInputDialog(""
+                                                                    + "Ingrese numero de personas que visitaron la sala: " + (i + 1)));
+                                                            listadoPorcentajes += "El porcentaje de ocupacion para la sala " + (i + 1) + " es: "
+                                                                    + cp.salas[i].calcularPorcOcupacion(numeroPersonas) + "%\n";
+                                                        } else {
+                                                            JOptionPane.showMessageDialog(null, "No hay salas registradas", "ERROR",
+                                                                    JOptionPane.ERROR_MESSAGE);
+                                                            break;
                                                         }
-                                                        break;
-                                                    case 6:
-                                                        JOptionPane.showMessageDialog(null, "El valor del recaudo por venta de boletas es: " + cp.calcularValorRecaudo());
-                                                        break;
-                                                    default:
-                                                        break;
-                                                }
-                                            } catch (NumberFormatException ex) {
-                                                JOptionPane.showMessageDialog(null, "No se permiten caracteres",
-                                                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                                                    } // Si se ha encontrado una sala
+                                                    if (salaParaPorcentaje == true) {
+                                                        JOptionPane.showMessageDialog(null, listadoPorcentajes);
+                                                    }
+                                                    break;
+                                                case 5:
+                                                    JOptionPane.showMessageDialog(null, "El valor del recaudo por venta de boletas es: " + cp.calcularValorRecaudo());
+                                                    break;
+                                                default:
+                                                    break;
                                             }
-                                        } while (opcionesAdministrador != 7);
+
+                                            // AQUI ESTABA EL CATCH
+                                        } while (opcionesAdministrador != 6);
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Autenticación fallida, intente nuevamente"
                                                 + "", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -205,7 +212,7 @@ public class PrincipalEmpresa {
                                                             //sl.mostrarProgramacion();
                                                             break;
                                                         case 2:
-																														try {
+                                                            try {
                                                             buscarPelicula = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
                                                             ep.mostrarInfoPelicula(buscarPelicula);
                                                         } catch (NullPointerException e) {

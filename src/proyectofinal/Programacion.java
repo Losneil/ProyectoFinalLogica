@@ -37,14 +37,15 @@ public class Programacion {
      *
      */
     public Programacion(int numeroSala) {
-
         this.numeroSala = numeroSala;
         horario = "";
         sillasReservadas = 0;
     }
 
+    /*Método encargado de pedir datos de una programación en el cual se piden también los datos de una pelicula
+    * @author Juan Angel Riaño Quintero.
+    */
     public void pedirDatosProgramacion() {
-
         peli = new Pelicula();
         peli.pedirInfoPelicula();
         if(peli.actividad == true){
