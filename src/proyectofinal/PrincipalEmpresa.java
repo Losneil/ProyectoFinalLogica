@@ -100,12 +100,6 @@ public class PrincipalEmpresa {
                                                         JOptionPane.showMessageDialog(null, "No se permiten ingresar mas complejos",
                                                                 "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                                                     } else {
-//                                                        for (int i = 0; i < ep.complejos.length; i++) {
-//                                                            if (ep.complejos[i] == null) {
-//                                                                ep.complejos[i] = new Complejo();
-//                                                                ep.complejos[i].pedirInfoComplejo();
-//                                                            }
-//                                                        }
                                                         ep.ingresarComplejo();
                                                         limiteComplejos = 1;
                                                     }
@@ -243,12 +237,22 @@ public class PrincipalEmpresa {
                                                     }
                                                     break;
                                                     case 3:
-                                                        idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
-                                                        cp.mostrarMapaSala(idSala);
+                                                        for (int i = 0; i < cp.salas.length; i++) {
+                                                            if(cp.salas[i] != null){
+                                                                idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
+                                                                cp.salas[i].mostrarMapaProgramacion(idSala);
+                                                                break;
+                                                            }
+                                                        }
                                                         break;
                                                     case 4:
-                                                        idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
-                                                        cp.reservarSilla(idSala);
+                                                        for (int i = 0; i < cp.salas.length; i++) {
+                                                            if(cp.salas[i] != null){
+                                                                idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
+                                                                cp.salas[i].reservarSilla(idSala);
+                                                                break;
+                                                            }
+                                                        }
                                                         break;
                                                     case 5:
                                                         rv.pedirDatosBoleta();
