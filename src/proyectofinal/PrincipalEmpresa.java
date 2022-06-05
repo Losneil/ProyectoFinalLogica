@@ -25,7 +25,7 @@ public class PrincipalEmpresa {
 
         String nomPrincipal = "", contraPrincipal = "", buscarPelicula, peliEspecifica, listadoPorcentajes = "";
         int opcionesCajero = 0, opcionesAdministrador = 0, numeroPersonas, idSala, seguir, numUso, numUsuario;
-        int registroUnico = 0, limiteComplejos = 0;
+        int registroUnico = 0, limiteComplejos = 0, listaSalas = 0, listaPeliculas = 0;
 
         try {
             do { // Ingresando credenciales al iniciar la ejecución del programa
@@ -83,11 +83,11 @@ public class PrincipalEmpresa {
                                                     opcionesAdministrador = Integer.parseInt(JOptionPane.showInputDialog("Elija una opcion"
                                                             + "\n1. Registrar complejo"
                                                             + "\n2. Registrar sala a un complejo especifico"
-                                                            // + "\n3. Almacenar datos de una pelicula"
-                                                            + "\n3. Modificar datos de una pelicula"
-                                                            + "\n4. Obtener porcentaje de ocupacion en cada sala"
-                                                            + "\n5. Obtener el total de ganancias por boletas"
-                                                            + "\n6. Salir"));
+                                                            + "\n3. Almacenar datos de una pelicula"
+                                                            + "\n4. Modificar datos de una pelicula"
+                                                            + "\n5. Obtener porcentaje de ocupacion en cada sala"
+                                                            + "\n6. Obtener el total de ganancias por boletas"
+                                                            + "\n7. Salir"));
                                                 } catch (NumberFormatException ex) {
                                                     JOptionPane.showMessageDialog(null, "No se permiten caracteres",
                                                             "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -100,14 +100,15 @@ public class PrincipalEmpresa {
                                                         JOptionPane.showMessageDialog(null, "No se permiten ingresar mas complejos",
                                                                 "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                                                     } else {
-                                                        for (int i = 0; i < ep.complejos.length; i++) {
-                                                            if (ep.complejos[i] == null) {
-                                                                ep.complejos[i] = new Complejo();
-                                                                ep.complejos[i].pedirInfoComplejo();
-                                                            }
-                                                        }
-                                                    }                                                    
-                                                    limiteComplejos = 1;
+//                                                        for (int i = 0; i < ep.complejos.length; i++) {
+//                                                            if (ep.complejos[i] == null) {
+//                                                                ep.complejos[i] = new Complejo();
+//                                                                ep.complejos[i].pedirInfoComplejo();
+//                                                            }
+//                                                        }
+                                                        ep.ingresarComplejo();
+                                                        limiteComplejos = 1;
+                                                    }
                                                     break;
                                                 case 2:
                                                     boolean existeComplejo = false;
@@ -129,10 +130,10 @@ public class PrincipalEmpresa {
                                                                 JOptionPane.ERROR_MESSAGE);
                                                     }
                                                     break;
-//                                                    case 3:
-//                                                        ep.ingresarPelicula();
-//                                                        break;
                                                 case 3:
+                                                    ep.ingresarPelicula();
+                                                    break;
+                                                case 4:
                                                     peliEspecifica = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
                                                     ep.actualizarDatosPelicula(peliEspecifica);
                                                     break;
@@ -151,7 +152,7 @@ public class PrincipalEmpresa {
 //                                                                    "ERROR", JOptionPane.ERROR_MESSAGE);
 //                                                        }
 //                                                        break;
-                                                case 4:
+                                                case 5:
                                                     boolean salaParaPorcentaje = false;
                                                     for (int j = 0; j < 10; j++) {
                                                         if (ep.complejos[j] != null) {
@@ -178,15 +179,22 @@ public class PrincipalEmpresa {
                                                         JOptionPane.showMessageDialog(null, listadoPorcentajes);
                                                     }
                                                     break;
-                                                case 5:
-                                                    JOptionPane.showMessageDialog(null, "El valor del recaudo por venta de boletas es: " + cp.calcularValorRecaudo());
+                                                case 6:
+                                                    String espComplejo;
+                                                    espComplejo = JOptionPane.showInputDialog("Especifique el nombre del complejo");
+                                                    for (int i = 0; i < ep.complejos.length; i++) {
+                                                        if(espComplejo.equals(ep.complejos[i].nombre)){
+                                                            JOptionPane.showMessageDialog(null, "El valor del recaudo por venta de boletas es: " + ep.complejos[i].calcularValorRecaudo());
+                                                            break;
+                                                        }
+                                                    }
                                                     break;
                                                 default:
                                                     break;
                                             }
 
                                             // AQUI ESTABA EL CATCH
-                                        } while (opcionesAdministrador != 6);
+                                        } while (opcionesAdministrador != 7);
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Autenticación fallida, intente nuevamente"
                                                 + "", "ERROR", JOptionPane.ERROR_MESSAGE);
