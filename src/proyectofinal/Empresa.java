@@ -90,7 +90,7 @@ public class Empresa {
 					}
 				}
 			} else { // Condicional que evalua si el arreglo de objetos Pelicula está lleno
-				JOptionPane.showMessageDialog(null, "No se pueden registrar mas complejos", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "No se pueden registrar mas peliculas", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
 				break;
 			}
 		}
