@@ -13,14 +13,19 @@ public class Empresa {
 	Usuario usuarios[] = new Usuario[2];
 	Complejo complejos[];
 	Pelicula peliculas[];
+	
 
-	/*Este método se encarga de registrar a los dos usuarios que usarán el sistema
-		@author José Manuel Quintero Rodriguez*/
-	public Empresa(int nc, int np) {
-		complejos = new Complejo[nc];
-		peliculas = new Pelicula[np];
-	}
+//	public Empresa(int nc, int np) {	
+//		
+//		complejos = new Complejo[nc];
+//		peliculas = new Pelicula[np];
+//	}
 
+	/**
+	 * Este método se encarga de registrar a los ods usuarios que usarán el sistema.
+	 * @author Jose Manuel Quintero Rodriguez.
+	 * 
+	 */
 	public void registrarUsuarios() {
 		String nick, password, tipoUser;
 		for (int i = 0; i < usuarios.length; i++) {
@@ -44,30 +49,31 @@ public class Empresa {
 	/*Este método se encarga de insertar las peliculas en la programación, 
 		siempre y cuando estas se encuentren activas para agregarlas a la programacion
 		@author José Manuel Quintero Rodríguez*/
-	public void ingresarPelicula() {
-		for (int i = 0; i < peliculas.length; i++) {
-			if (peliculas[i] == null) { // Primero verificamos que no halla un objeto Pelicula en esta posicion
-				// En la posicion i agregamos un nuevo objeto de pelicula con datos inicializados
-				peliculas[i] = new Pelicula();
-				// Solicitamos informacion de la pelicula
-				peliculas[i].pedirInfoPelicula();
-				/* Ciclo que ayuda a comprobar que no hallan peliculas a proyectar en el mismo horario
-                    en la sala que se está gestionando*/
-				for (int j = 0; j < i; j++) {
-					if (peliculas[j].nomEspanol.equals(peliculas[i].nomEspanol)) {
-						JOptionPane.showMessageDialog(null, "Ya existe esta pelicula en la programacion", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-						i--; // Pasamos a la posicion anterior y volvemos a la misma para sobreescribir el nombre
-						break; // Aqui rompemos el ciclo interno que maneja el iterador j
-					}
-				}
-			} else { // Condicional que evalua si el arreglo de objetos Pelicula está lleno
-				JOptionPane.showMessageDialog(null, "No se pueden registrar mas peliculas", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-				break;
-			}
-		}
-	}
+//	public void ingresarPelicula() {
+//		for (int i = 0; i < peliculas.length; i++) {
+//			if (peliculas[i] == null) { // Primero verificamos que no halla un objeto Pelicula en esta posicion
+//				// En la posicion i agregamos un nuevo objeto de pelicula con datos inicializados
+//				peliculas[i] = new Pelicula();
+//				// Solicitamos informacion de la pelicula
+//				peliculas[i].pedirInfoPelicula();
+//				/* Ciclo que ayuda a comprobar que no hallan peliculas a proyectar en el mismo horario
+//                    en la sala que se está gestionando*/
+//				for (int j = 0; j < i; j++) {
+//					if (peliculas[j].nomEspanol.equals(peliculas[i].nomEspanol)) {
+//						JOptionPane.showMessageDialog(null, "Ya existe esta pelicula en la programacion", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+//						i--; // Pasamos a la posicion anterior y volvemos a la misma para sobreescribir el nombre
+//						break; // Aqui rompemos el ciclo interno que maneja el iterador j
+//					}
+//				}
+//			} else { // Condicional que evalua si el arreglo de objetos Pelicula está lleno
+//				JOptionPane.showMessageDialog(null, "No se pueden registrar mas peliculas", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+//				break;
+//			}
+//		}
+//	}
 
 	public void ingresarComplejo() {
+		
 		for (int i = 0; i < complejos.length; i++) {
 			if (complejos[i] == null) { // Primero verificamos que no halla un objeto complejo en esta posicion
 				// En la posicion i agregamos un nuevo objeto de complejo con datos inicializados

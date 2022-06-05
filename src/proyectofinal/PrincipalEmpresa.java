@@ -41,13 +41,14 @@ public class PrincipalEmpresa {
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, "No se permiten datos vacios", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
-		int numeroPeliculas, numeroComplejos;
-		numeroComplejos = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de complejos a registrar"));
-		numeroPeliculas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de peliculas a registrar"));
-		ep = new Empresa(numeroComplejos, numeroPeliculas);
+//		int numeroPeliculas, numeroComplejos;
+//		numeroComplejos = Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos complejos desea ingresar?"));
+//		numeroPeliculas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de peliculas a registrar"));
+		ep = new Empresa();
 		String nombre, clave; // variables que se pasaran como parametros al metodo de autenticaciopn
 		String[] opcionUso = {"Realizar registros", "Ingresar con usuario especifico"}; //Arreglo para las opciones de botón de acción
 		String[] nombreUsuario = {"Administrador", "Cajero"}; //Arreglo para las opciones de botón de tipo de usuario
+		
 
 		do { // Una vez validadas las credenciales damos funcionalidades propias para un gerente o administrador principal
 			if (nomPrincipal.equals("1") && contraPrincipal.equals("1")) {
@@ -74,9 +75,10 @@ public class PrincipalEmpresa {
 									nombre = JOptionPane.showInputDialog("Digite su nombre, señor administrador");
 									clave = JOptionPane.showInputDialog("Digite su contraseña, señor administrador");
 									if (ep.usuarios[numUsuario].autenticar(nombre, clave)) {
-										autentiAdmin = true;
-										do { // Mostrar el menú de opciones para el administrador
-											int controlExcep;
+										autentiAdmin = true;										
+										
+										do { // Mostrar el menú de opciones para el administrador.
+											int controlExcep;																						
 											do {
 												try {
 													controlExcep = 0;
@@ -93,28 +95,36 @@ public class PrincipalEmpresa {
 													"ERROR", JOptionPane.ERROR_MESSAGE);
 													controlExcep = 1;
 												}
-											} while (controlExcep == 1);
-											switch (opcionesAdministrador) {
-												case 1:
-													int i;
-													for (i = 0; i < ep.complejos.length; i++) {
+											} while (controlExcep == 1);											
+
+											switch (opcionesAdministrador) {			
+												
+												case 1 -> {
+													int numeroComplejos, i;													
+													numeroComplejos = Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos complejos desea ingresar?"));
 														
-														if (ep.complejos[i] == null && i < numeroComplejos) {
-															
+													// Asignamos el valor ingresado, como tamaño del arreglo complejos[] de la clase Empresa.
+													ep.complejos = new Complejo [numeroComplejos];																															
+
+													for (i = 0; i < ep.complejos.length; i++) {
+
+														if (ep.complejos[i] == null && i < ep.complejos.length) {
+
 															ep.complejos[i] = new Complejo();
 															ep.complejos[i].pedirInfoComplejo();
-														} else {
-															if (i >= numeroComplejos) {
-																JOptionPane.showMessageDialog(null, "No se permite ingresar mas complejos",
-																"ADVERTENCIA", JOptionPane.ERROR_MESSAGE);
-																break;
-															}
+															//	} else {
+															//		if (i >= ep.complejos.length) {
+															//				JOptionPane.showMessageDialog(null, "No se permite ingresar mas complejos",
+															//				"ADVERTENCIA", JOptionPane.ERROR_MESSAGE);
+															//				break;
+															//			}
 														}
 													}
-
-													break;
-												case 2:
+												}
+											
+												case 2 -> {
 													boolean existeComplejo = false;
+													int i;
 													for (i = 0; i < ep.complejos.length; i++) {
 														try {
 															if (ep.complejos[i] != null) {
@@ -132,31 +142,14 @@ public class PrincipalEmpresa {
 														+ "\ntiene que haber al menos un complejo registrado", "ERROR",
 														JOptionPane.ERROR_MESSAGE);
 													}
-													break;
-//                                                    case 3:
-//                                                        ep.ingresarPelicula();
-//                                                        break;
-												case 3:
+												}
+												case 3 -> {
 													peliEspecifica = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
 													ep.actualizarDatosPelicula(peliEspecifica);
-													break;
-//                                                    case 5:
-//                                                        boolean salaParaProgramacion = false;
-//                                                        for (int i = 0; i < cp.salas.length; i++) {
-//                                                            if (cp.salas[i] != null) {
-//                                                                salaParaProgramacion = true;
-//                                                                pr.crearProgramacion();
-//                                                                break;
-//                                                            }
-//                                                        } // Si no se encontró ninguna sala
-//                                                        if (salaParaProgramacion == false) {
-//                                                            JOptionPane.showMessageDialog(null,
-//                                                                    "No se puede crear una programacion si no hay una sals registrada",
-//                                                                    "ERROR", JOptionPane.ERROR_MESSAGE);
-//                                                        }
-//                                                        break;
-												case 4:
+												}
+												case 4 -> {
 													boolean salaParaPorcentaje = false;
+													int i;
 													for (i = 0; i < cp.salas.length; i++) { // Recorremos el arreglo de objetos tipo Sala
 														if (cp.salas[i] != null) { // Verificamos que si exista el objeto de la sala en la posición indicada
 															salaParaPorcentaje = true;
@@ -173,15 +166,30 @@ public class PrincipalEmpresa {
 													if (salaParaPorcentaje == true) {
 														JOptionPane.showMessageDialog(null, listadoPorcentajes);
 													}
-													break;
-												case 5:
-													JOptionPane.showMessageDialog(null, "El valor del recaudo por venta de boletas es: " + cp.calcularValorRecaudo());
-													break;
-												default:
-													break;
+												}
+												case 5 -> JOptionPane.showMessageDialog(null, "El valor del recaudo por venta de boletas es: " + cp.calcularValorRecaudo());
+												default -> {
+												}
 											}
-
-											// AQUI ESTABA EL CATCH
+//                                                    case 3:
+//                                                        ep.ingresarPelicula();
+//                                                        break;
+//                                                    case 5:
+//                                                        boolean salaParaProgramacion = false;
+//                                                        for (int i = 0; i < cp.salas.length; i++) {
+//                                                            if (cp.salas[i] != null) {
+//                                                                salaParaProgramacion = true;
+//                                                                pr.crearProgramacion();
+//                                                                break;
+//                                                            }
+//                                                        } // Si no se encontró ninguna sala
+//                                                        if (salaParaProgramacion == false) {
+//                                                            JOptionPane.showMessageDialog(null,
+//                                                                    "No se puede crear una programacion si no hay una sals registrada",
+//                                                                    "ERROR", JOptionPane.ERROR_MESSAGE);
+//                                                        }
+//                                                        break;
+																						// AQUI ESTABA EL CATCH
 										} while (opcionesAdministrador != 6);
 									} else {
 										JOptionPane.showMessageDialog(null, "Autenticación fallida, intente nuevamente"
