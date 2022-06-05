@@ -19,7 +19,7 @@ public class Complejo {
 
 	/* Crear arreglo de tipo sala que almacenará como máximo 10 salas por complejo
 		En este caso se dejó indicado el indice del numero de salas*/
-	Sala[] salas;
+	Sala[] salas = new Sala[10];
 	Sala sl = new Sala();
 
 	/**
@@ -57,19 +57,20 @@ public class Complejo {
 		y validar que el objeto de la sala no esté repetido mediante su ID
 		@author José Manuel Quintero Rodríguez*/
 	public void ingresarSala() {
-		int n;
+		int nSalasRegistrar; // n, es el número de salas que el usuario quiere ingresar en el momento.
 		
 		do {		
-			n = Integer.parseInt(JOptionPane.showInputDialog("¿Cuantas salas desea ingresar?"));
-			salas = new Sala[n];	
-			
-			if (n > 10) {
+			nSalasRegistrar = Integer.parseInt(JOptionPane.showInputDialog("¿Ingrese el número de salas a registrar: ?"));				
+			if (nSalasRegistrar > 10) {
 				JOptionPane.showMessageDialog(null, "No pueden registrarse mas de 10 salas", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
-		} while (n > 10);
+		} while (nSalasRegistrar > 10);
 		
 		for (int i = 0; i < salas.length; i++) {
 			
+			if (i > nSalasRegistrar) {  
+				break;
+			}
 			if (salas[i] == null) {
 				
 				salas[i] = new Sala(); // Creamos un objeto de tipo sala con datos inicializados y lo guardamos en la posicion i

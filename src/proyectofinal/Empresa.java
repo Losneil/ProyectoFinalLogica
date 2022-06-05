@@ -14,13 +14,15 @@ public class Empresa {
 	Complejo complejos[];
 	Pelicula peliculas[];
 
-	/*Este método se encarga de registrar a los dos usuarios que usarán el sistema
-		@author José Manuel Quintero Rodriguez*/
-	public Empresa(int nc, int np) {
+	
+	public Empresa(int nc) {
 		complejos = new Complejo[nc];
-		peliculas = new Pelicula[np];
 	}
-
+	
+	/**
+	 * Este método se encarga de registrar a los dos usuarios que usarán el sistema.
+	 * @author José Manuel Quintero Rodriguez.
+	 */
 	public void registrarUsuarios() {
 		String nick, password, tipoUser;
 		for (int i = 0; i < usuarios.length; i++) {

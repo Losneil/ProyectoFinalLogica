@@ -1,16 +1,19 @@
 
 package proyectofinal;
-// Para esta clase y para las demás clases, se trabajó con ventanas emergentes
+// Para esta clase y para las demás clases, se trabajó con ventanas emergentes.
 
 import javax.swing.JOptionPane;
 
-/* Fecha de creacion: 3 de mayo
- *
- * @author José Manuel Quintero Rodriguez
+/**
+ * Fecha de creacion: 3 de mayo
  *
  * Esta clase principal se encargará ya de por si permitir el ingreso al sistema al usuario gerente,
  * el cual se encargará de registrar usuarios y proporcionarles a cada tipo de usuario, 
  * unas determinadas funcionalidades dentro del sistema.
+ * 
+ * @author José Manuel Quintero Rodriguez.
+ * @author Juan Ángel Riaño Quintero.
+ * 
  */
 public class PrincipalEmpresa {
 
@@ -42,9 +45,9 @@ public class PrincipalEmpresa {
 			JOptionPane.showMessageDialog(null, "No se permiten datos vacios", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 		int numeroPeliculas, numeroComplejos;
-		numeroComplejos = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de complejos a registrar"));
+		numeroComplejos = Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos complejos en total posee la empresa?"));
 		numeroPeliculas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de peliculas a registrar"));
-		ep = new Empresa(numeroComplejos, numeroPeliculas);
+		ep = new Empresa(numeroComplejos);
 		String nombre, clave; // variables que se pasaran como parametros al metodo de autenticaciopn
 		String[] opcionUso = {"Realizar registros", "Ingresar con usuario especifico"}; //Arreglo para las opciones de botón de acción
 		String[] nombreUsuario = {"Administrador", "Cajero"}; //Arreglo para las opciones de botón de tipo de usuario
@@ -89,21 +92,45 @@ public class PrincipalEmpresa {
 													+ "\n5. Obtener el total de ganancias por boletas"
 													+ "\n6. Salir"));
 												} catch (NumberFormatException ex) {
-													JOptionPane.showMessageDialog(null, "",
+													JOptionPane.showMessageDialog(null, "Debe elegir una opción del menú",
 													"ERROR", JOptionPane.ERROR_MESSAGE);
 													controlExcep = 1;
 												}
 											} while (controlExcep == 1);
 											switch (opcionesAdministrador) {
+
 												case 1:
-													int i;
+													// nRegistros, es el número de complejos que el usuario desea registrar en ese momento.
+													int i, nRegistros = 0;													
+													// Ciclo para comprobar que el usuario NO INGRESE un caracter.
+														do {															
+															try {
+																controlExcep = 0;
+																nRegistros = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de complejos a registrar: "));																																		
+																if (nRegistros > ep.complejos.length) {
+																	JOptionPane.showMessageDialog(null, "No puede registar más complejos del que tiene la empresa", "ERROR", JOptionPane.ERROR_MESSAGE);
+																}																				
+															}
+															catch (NumberFormatException e) {
+																JOptionPane.showMessageDialog(null, "Debe ingresar un número", "ERROR", JOptionPane.ERROR_MESSAGE);
+																controlExcep = 1;
+															}
+														} while (controlExcep == 1);
+
 													for (i = 0; i < ep.complejos.length; i++) {
-														
-														if (ep.complejos[i] == null && i < numeroComplejos) {
-															
+
+														// Este condicional rompe el ciclo si, el iterador es mas grande que el número de complejos que el usuario quiere registar.
+														if (i > nRegistros) {
+															break;
+														}
+														if (ep.complejos[i] == null && i < nRegistros) {
+
 															ep.complejos[i] = new Complejo();
 															ep.complejos[i].pedirInfoComplejo();
-														} else {
+															// Mensaje de confirmación.
+															JOptionPane.showMessageDialog(null, "Complejo registrado Exitosamente");
+														}
+														else {
 															if (i >= numeroComplejos) {
 																JOptionPane.showMessageDialog(null, "No se permite ingresar mas complejos",
 																"ADVERTENCIA", JOptionPane.ERROR_MESSAGE);
@@ -111,15 +138,15 @@ public class PrincipalEmpresa {
 															}
 														}
 													}
-
 													break;
+
 												case 2:
 													boolean existeComplejo = false;
 													for (i = 0; i < ep.complejos.length; i++) {
 														try {
 															if (ep.complejos[i] != null) {
 																existeComplejo = true;
-																JOptionPane.showMessageDialog(null, "Ingresar sala para el complejo " + (i + 1));
+																JOptionPane.showMessageDialog(null, (i + 1) + ". Ingresar sala para el complejo " + ep.complejos[i].nombre);
 																cp.ingresarSala();
 																break;
 															}
