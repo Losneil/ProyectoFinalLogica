@@ -151,7 +151,7 @@ public class Empresa {
      * Este metodo se encarga de mostrar la informacion una pelicula
      * especificando el nombre de la misma dentro del arreglo de objetos Pelicula
      * @author Jose Manuel Quintero Rodriguez
-     * @param nombre 
+     * @param nombre que el parametro que se necesita para comprobar que el nombre ingresado concuerde con alguno del arreglo
      */
     public void mostrarInfoPelicula(String nombre) {
         // El indicador por defecto es falso, pero si se encuentra una pelicula, su valor cambia a verdadero

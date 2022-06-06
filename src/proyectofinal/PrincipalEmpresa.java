@@ -246,9 +246,28 @@ public class PrincipalEmpresa {
                                                 switch (opcionesCajero) {
                                                     case 1:
                                                         // PENDIENTE
+                                                        String nombreComplejo;
+                                                        int nSala;
+                                                        nombreComplejo = JOptionPane.showInputDialog("Especifique el nombre del complejo");
+                                                        nSala = Integer.parseInt(JOptionPane.showInputDialog("Especifique el nombre del complejo"));
+                                                        for (int i = 0; i < ep.complejos.length; i++) {
+                                                            if(ep.complejos[i].nombre.equals(nombreComplejo)){ // Comparamos nombre complejo
+                                                                if(ep.complejos[i].salas[i].numeroSala == nSala){ // Comparamos numero de sala a ese complejo
+                                                                    JOptionPane.showMessageDialog(null, ep.complejos[i].salas[i].programaciones[i].peli
+                                                                            + "\n" + ep.complejos[i].salas[i].programaciones[i].horario
+                                                                            + "\n" + ep.complejos[i].salas[i].programaciones[i].numeroSala);
+                                                                    break;
+                                                                } else {
+                                                                    JOptionPane.showMessageDialog(null, "No se encontró la sala", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                                                                }
+                                                            } else {
+                                                                JOptionPane.showMessageDialog(null, "No se encontró la sala", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                                                            }
+                                                        }
+                                                        sl.mostrarProgramacion();
                                                         break;
                                                     case 2:
-                                                            try {
+                                                    try {
                                                         buscarPelicula = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
                                                         ep.mostrarInfoPelicula(buscarPelicula);
                                                     } catch (NullPointerException e) {
