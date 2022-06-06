@@ -138,29 +138,38 @@ public class Sala {
         }
     }
 
-    /* Este método se encarga de hacer la reserva en de una silla en una sala
-		@author Jose Manuel Quintero Rodriguez*/
+     
+    /**
+     * Este método se encarga de hacer la reserva en de una silla en una sala
+     * @author Jose Manuel Quintero Rodriguez
+     * 
+     * @param id el cual es es parametro que se necesita para especificar una sala en donde se hará la reserva
+     */
     public void reservarAsiento(int id) {
 
         boolean existencia = false;
-        int controladorAlertas = 0;
-        int confirmarReserva; // variable que indica si la confimacion de la reserva
+        int cAlertas = 0;
         int confirmador, espFila, espColumna;
         for (int i = 0; i < programaciones.length; i++) {
-            if (programaciones[i].numeroSala == id) {
-                do {
-                    espFila = Integer.parseInt(JOptionPane.showInputDialog("Dime el numero de fila"));
-                    if (espFila < 0 || espFila > programaciones[i].sillas.length - 1) {
-                        JOptionPane.showMessageDialog(null, "No se permite el número", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
-                } while (espFila < 0 || espFila > programaciones[i].sillas.length - 1);
-                do {
-                    espColumna = Integer.parseInt(JOptionPane.showInputDialog("Dime el numero de columna"));
-                    if (espColumna < 0 || espColumna > programaciones[i].sillas[0].length - 1) {
-                        JOptionPane.showMessageDialog(null, "No se permite el número", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
-                } while (espColumna < 0 || espColumna > programaciones[i].sillas[0].length - 1);
-                programaciones[i].sillas[espFila][espColumna] = false;
+            if (programaciones[i] != null) {
+                if (programaciones[i].numeroSala == id) {
+                    do {
+                        espFila = Integer.parseInt(JOptionPane.showInputDialog("Dime el numero de fila"));
+                        if (espFila < 0 || espFila > programaciones[i].sillas.length - 1) {
+                            JOptionPane.showMessageDialog(null, "No se permite el número", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (espFila < 0 || espFila > programaciones[i].sillas.length - 1);
+                    do {
+                        espColumna = Integer.parseInt(JOptionPane.showInputDialog("Dime el numero de columna"));
+                        if (espColumna < 0 || espColumna > programaciones[i].sillas[0].length - 1) {
+                            JOptionPane.showMessageDialog(null, "No se permite el número", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } while (espColumna < 0 || espColumna > programaciones[i].sillas[0].length - 1);
+                    programaciones[i].sillas[espFila][espColumna] = false;
+                    break;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Sala inexsitente", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                 break;
             }
         }
@@ -198,6 +207,11 @@ public class Sala {
 //        }
     }
 
+    /**
+     * @author José Manuel Quintero Rodríguez
+     * 
+     * @param id el cual es el parametro que se necesita para especificar la sala de la cual se deseea conocer su estado
+     */
     public void mostrarMapaSala(int id) {
         boolean existencia = false;
         String muestreMapa = "";
@@ -217,6 +231,7 @@ public class Sala {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Programacion Inexistente", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                break;
             }
 
         } // En caso de que la existencia de esa sala especifica sea falsa

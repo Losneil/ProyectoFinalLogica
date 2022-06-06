@@ -22,7 +22,7 @@ public class Complejo {
     String nombre, direccion, nombreAdmin;
 
     /* Crear arreglo de tipo sala que almacenará como máximo 10 salas por complejo
-		En este caso se dejó indicado el indice del numero de salas*/
+    En este caso se dejó indicado el indice del numero de salas*/
     Sala[] salas = new Sala[10];
     Sala sl = new Sala();
 
@@ -57,9 +57,12 @@ public class Complejo {
 //        salas = new Sala[numSalas];
     }
 
-    /* Este método se encarga de crear un objeto de tipo Sala, pedir los datos del mismo
-		y validar que el objeto de la sala no esté repetido mediante su ID
-		@author José Manuel Quintero Rodríguez*/
+     
+    /**
+     * Este método se encarga de crear un objeto de tipo Sala, pedir los datos del mismo
+     * y validar que el objeto de la sala no esté repetido mediante su ID
+     * @author José Manuel Quintero Rodríguez
+     */
     public void ingresarSala() {
         int nSalasRegistrar; // n, es el número de salas que el usuario quiere ingresar en el momento.
 
@@ -171,9 +174,12 @@ public class Complejo {
 //            JOptionPane.showMessageDialog(null, "No se encontró la sala", "ERROR", JOptionPane.ERROR_MESSAGE);
 //        }
 //    }
-
-    /* Este método se encarga de calcular el valor de recaudo por ganancias en un dia
-		@author Jose Manuel Quintero Rodriguez*/
+    
+    /**
+     * Este método se encarga de calcular el valor de recaudo por ganancias en un dia
+     * @author Jose Manuel Quintero Rodriguez
+     * @return recaudo donde se retorna el valor obtenido por venta de boletas dentro del complejo
+     */
     public double calcularValorRecaudo() {
         double recaudo = 0;
         for (int i = 0; i < salas.length; i++) {

@@ -42,8 +42,10 @@ public class Programacion {
 		}
 	}
 
-	/*Método encargado de pedir datos de una programación en el cual se piden también los datos de una pelicula
-    * @author Juan Angel Riaño Quintero.
+	/** 
+         * Método encargado de pedir datos de una programación en el cual se piden también los datos de una pelicula
+         * 
+         * @author Juan Angel Riaño Quintero.
 	 */
 	public void pedirInfoProgramacion() {
 		peli = new Pelicula();
