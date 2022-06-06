@@ -17,6 +17,7 @@ public class Empresa {
     Usuario usuarios[] = new Usuario[2];
     Complejo complejos[];
     Pelicula peliculas[];
+    Reserva rv = new Reserva();
 
     /**
      * Método constructor de la clase
@@ -24,6 +25,39 @@ public class Empresa {
      */
     public Empresa(int nc) {
         complejos = new Complejo[nc];
+    }
+    
+    /**
+     * @author José Manuel Quintero Rodríguez
+     * 
+     * @param id el cual es el parametro que se necesita para especificar la sala de la cual se deseea conocer su estado
+     */
+    public void mostrarMapaSala(int id) {
+        boolean existencia = false;
+        String muestreMapa = "";
+        for (int i = 0; i < complejos.length; i++) { // Recorremos el arreglo de la sala
+            if (complejos[i].salas[i].programaciones[i] != null) {
+                if (complejos[i].salas[i].programaciones[i].numeroSala == id) { // Verificamos si la sala existe
+                    for (int j = 0; j < complejos[i].salas[i].sillas.length; j++) {
+                        for (int k = 0; k < complejos[i].salas[i].sillas[0].length; k++) {
+                            muestreMapa += complejos[i].salas[i].sillas[j][k] + " ";
+                        }
+                        muestreMapa += "\n";
+                    }
+                    JOptionPane.showMessageDialog(null, muestreMapa);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe una sala con ese número", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    break; // Rompemos el ciclo inmediatamente sacandonos del ciclo
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Programacion Inexistente", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                break;
+            }
+
+        } // En caso de que la existencia de esa sala especifica sea falsa
+        if (existencia == true) {
+            JOptionPane.showMessageDialog(null, muestreMapa);
+        }
     }
 
     /**

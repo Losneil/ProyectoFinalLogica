@@ -21,16 +21,12 @@ public class PrincipalEmpresa {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Complejo cp = new Complejo();
-        Reserva rv = new Reserva();
-        Sala sl = new Sala();
+        // Primeramente creamos el objeto de tipo Empresa
         Empresa ep;
-        // Asignamos un complejo para hacer la prueba de que no se registren las salas
-
         String nomPrincipal = "", contraPrincipal = "", buscarPelicula, peliEspecifica, listadoPorcentajes = "";
         int opcionesCajero = 0, opcionesAdministrador = 0, numeroPersonas, idSala, seguir, numUso, numUsuario;
         int registroUnico = 0; // Indicador de primero registro
-
+        boolean esSalaEnComplejo; // Es quien nos indica si existe una sala especifica en un complejo especifico
         try {
             do { // Ingresando credenciales al iniciar la ejecución del programa
                 nomPrincipal = JOptionPane.showInputDialog("Ingrese su nombre, señor gerente:");
@@ -48,6 +44,7 @@ public class PrincipalEmpresa {
 
         // Creamos las variables con respecto a las cantidades de complejos y peliculas que promoverá la empresa
         int numeroPeliculas, numeroComplejos, cAlertas = 0;
+        String nombreComplejo;
         numeroComplejos = Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos complejos en total posee la empresa?"));
 //		numeroPeliculas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de peliculas a registrar"));
         ep = new Empresa(numeroComplejos);
@@ -101,57 +98,17 @@ public class PrincipalEmpresa {
                                                 }
                                             } while (controlExcep == 1);
                                             switch (opcionesAdministrador) {
-
                                                 case 1:
-                                                    int i;
                                                     ep.ingresarComplejo();
-                                                    // Ciclo para comprobar que el usuario NO INGRESE un caracter.
-//													do {
-//														try {
-//															controlExcep = 0;
-//															if (cAlertas == 0) {
-//																nRegistros = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de complejos a registrar"
-//																+ "\n(Cabe aclarar que estos no deben ser mayores al máximo establecido) "));
-//																cAlertas = 1;
-//															}
-//															if (nRegistros > ep.complejos.length) {
-//																JOptionPane.showMessageDialog(null, "No puede registar más complejos del que tiene la empresa", "ERROR", JOptionPane.ERROR_MESSAGE);
-//															}
-//														} catch (NumberFormatException e) {
-//															JOptionPane.showMessageDialog(null, "Debe ingresar un número", "ERROR", JOptionPane.ERROR_MESSAGE);
-//															controlExcep = 1;
-//														}
-//													} while (controlExcep == 1);
-//
-//													for (i = 0; i < ep.complejos.length; i++) {
-//
-//														// Este condicional rompe el ciclo si, el iterador es mas grande que el número de complejos que el usuario quiere registar.
-//														if (i > nRegistros) {
-//															break;
-//														}
-//														if (ep.complejos[i] == null && i < nRegistros) {
-//
-//															ep.complejos[i] = new Complejo();
-//															ep.complejos[i].pedirInfoComplejo();
-//															// Mensaje de confirmación.
-//															JOptionPane.showMessageDialog(null, "Complejo registrado Exitosamente");
-//														} else {
-//															if (i >= numeroComplejos) {
-//																JOptionPane.showMessageDialog(null, "No se permite ingresar mas complejos",
-//																"ADVERTENCIA", JOptionPane.ERROR_MESSAGE);
-//																break;
-//															}
-//														}
-//													}
                                                     break;
                                                 case 2:
                                                     boolean existeComplejo = false;
-                                                    for (i = 0; i < ep.complejos.length; i++) {
+                                                    for (int i = 0; i < ep.complejos.length; i++) {
                                                         try {
                                                             if (ep.complejos[i] != null) {
                                                                 existeComplejo = true;
                                                                 JOptionPane.showMessageDialog(null, (i + 1) + ". Ingresar sala para el complejo " + ep.complejos[i].nombre);
-                                                                cp.ingresarSala();
+                                                                ep.complejos[i].ingresarSala();
                                                                 break;
                                                             }
                                                         } catch (ArrayIndexOutOfBoundsException e) {
@@ -188,13 +145,13 @@ public class PrincipalEmpresa {
 //                                                        break;
                                                 case 4:
                                                     boolean salaParaPorcentaje = false;
-                                                    for (i = 0; i < cp.salas.length; i++) { // Recorremos el arreglo de objetos tipo Sala
-                                                        if (cp.salas[i] != null) { // Verificamos que si exista el objeto de la sala en la posición indicada
+                                                    for (int i = 0; i < ep.complejos[i].salas.length; i++) { // Recorremos el arreglo de objetos tipo Sala
+                                                        if (ep.complejos[i].salas[i] != null) { // Verificamos que si exista el objeto de la sala en la posición indicada
                                                             salaParaPorcentaje = true;
                                                             numeroPersonas = Integer.parseInt(JOptionPane.showInputDialog(""
                                                                     + "Ingrese numero de personas que visitaron la sala: " + (i + 1)));
                                                             listadoPorcentajes += "El porcentaje de ocupacion para la sala " + (i + 1) + " es: "
-                                                                    + cp.salas[i].calcularPorcOcupacion(numeroPersonas) + "%\n";
+                                                                    + ep.complejos[i].salas[i].calcularPorcOcupacion(numeroPersonas) + "%\n";
                                                         } else {
                                                             JOptionPane.showMessageDialog(null, "No hay salas registradas", "ERROR",
                                                                     JOptionPane.ERROR_MESSAGE);
@@ -206,7 +163,12 @@ public class PrincipalEmpresa {
                                                     }
                                                     break;
                                                 case 5:
-                                                    JOptionPane.showMessageDialog(null, "El valor del recaudo por venta de boletas es: " + cp.calcularValorRecaudo());
+                                                    nombreComplejo = JOptionPane.showInputDialog("Especifique el nombre del complejo");
+                                                    for (int l = 0; l < ep.complejos.length; l++) {
+                                                        if(ep.complejos[l].nombre.equals(nombreComplejo)){
+                                                            JOptionPane.showMessageDialog(null, "El valor del recaudo por venta de boletas es: " + ep.complejos[l].calcularValorRecaudo());
+                                                        }
+                                                    }
                                                     break;
                                                 default:
                                                     break;
@@ -246,7 +208,6 @@ public class PrincipalEmpresa {
                                                 switch (opcionesCajero) {
                                                     case 1:
                                                         // PENDIENTE
-                                                        String nombreComplejo;
                                                         int nSala;
                                                         nombreComplejo = JOptionPane.showInputDialog("Especifique el nombre del complejo");
                                                         nSala = Integer.parseInt(JOptionPane.showInputDialog("Especifique el nombre del complejo"));
@@ -264,7 +225,7 @@ public class PrincipalEmpresa {
                                                                 JOptionPane.showMessageDialog(null, "No se encontró la sala", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                                                             }
                                                         }
-                                                        sl.mostrarProgramacion();
+                                                        ep.complejos[0].salas[0].mostrarProgramacion();
                                                         break;
                                                     case 2:
                                                     try {
@@ -275,16 +236,46 @@ public class PrincipalEmpresa {
                                                     }
                                                     break;
                                                     case 3:
+                                                        esSalaEnComplejo = false;
                                                         idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
-                                                        sl.mostrarMapaSala(idSala);
+                                                        nombreComplejo = JOptionPane.showInputDialog("Ingrese el nombre del complejo");
+                                                        for (int i = 0; i < ep.complejos.length; i++) {
+                                                            for (int j = 0; j < ep.complejos[i].salas.length; j++) {
+                                                                if(ep.complejos[i].nombre.equals(nombreComplejo)){
+                                                                    if(ep.complejos[i].salas[i].numeroSala == idSala){
+                                                                        ep.complejos[i].salas[i].mostrarMapaSala(idSala);
+                                                                        esSalaEnComplejo = true;
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                            if(esSalaEnComplejo == true){
+                                                                break;
+                                                            }
+                                                        }
                                                         break;
                                                     case 4:
+                                                        esSalaEnComplejo = false;
                                                         idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
-                                                        sl.reservarAsiento(idSala);
+                                                        nombreComplejo = JOptionPane.showInputDialog(null, "Especifique el nombre del complejo");
+                                                        for (int i = 0; i < ep.complejos.length; i++) {
+                                                            for (int j = 0; j < ep.complejos[i].salas.length; j++) {
+                                                                if(ep.complejos[i].nombre.equals(nombreComplejo)){
+                                                                    if(ep.complejos[i].salas[i].numeroSala == idSala){
+                                                                        ep.complejos[i].salas[i].reservarAsiento(idSala);
+                                                                        esSalaEnComplejo = true;
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                            if(esSalaEnComplejo == true){
+                                                                break;
+                                                            }
+                                                        }
                                                         break;
                                                     case 5:
-                                                        rv.pedirDatosBoleta();
-                                                        rv.generarBoleta();
+                                                        ep.rv.pedirDatosBoleta();
+                                                        ep.rv.generarBoleta();
                                                         break;
                                                     default:
                                                         break;

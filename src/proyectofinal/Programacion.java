@@ -20,7 +20,6 @@ public class Programacion {
     Pelicula peli;
 
     // La matriz de sillas[], siempre será una matriz 5x5, osea que todas las salas tendran el mismo tamaño.
-    boolean sillas[][] = new boolean[5][5];
 
 //	 Pelicula pl = new Pelicula();
 //	 Complejo cp = new Complejo();
@@ -38,11 +37,6 @@ public class Programacion {
     public Programacion(int numeroSala) {
         this.numeroSala = numeroSala;
         horario = "";
-        for (int i = 0; i < sillas.length; i++) {
-            for (int j = 0; j < sillas[0].length; j++) {
-                sillas[i][j] = true;
-            }
-        }
     }
 
     /**
@@ -59,10 +53,5 @@ public class Programacion {
         } else {
             JOptionPane.showMessageDialog(null, "La película no se agregó a la programación");
         }
-
-    }
-
-    public void crearProgramacion() {
-        
     }
 }
