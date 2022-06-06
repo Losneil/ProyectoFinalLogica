@@ -41,6 +41,7 @@ public class PrincipalEmpresa {
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "No se permiten datos vacios", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+
         // Creamos las variables con respecto a las cantidades de complejos y peliculas que promoverá la empresa
         int numeroPeliculas, numeroComplejos, cAlertas = 0;
         String nombreComplejo;
@@ -85,11 +86,11 @@ public class PrincipalEmpresa {
                                                     opcionesAdministrador = Integer.parseInt(JOptionPane.showInputDialog("Elija una opcion"
                                                             + "\n1. Registrar complejo"
                                                             + "\n2. Registrar sala a un complejo especifico"
-                                                            + "\n3. Crear una programacion para una sala y un complejo"
-                                                            + "\n4. Modificar datos de una pelicula"
-                                                            + "\n5. Obtener porcentaje de ocupacion en cada sala"
-                                                            + "\n6. Obtener el total de ganancias por boletas"
-                                                            + "\n7. Salir"));
+                                                            // + "\n3. Almacenar datos de una pelicula"
+                                                            + "\n3. Modificar datos de una pelicula"
+                                                            + "\n4. Obtener porcentaje de ocupacion en cada sala"
+                                                            + "\n5. Obtener el total de ganancias por boletas"
+                                                            + "\n6. Salir"));
                                                 } catch (NumberFormatException ex) {
                                                     JOptionPane.showMessageDialog(null, "Debe elegir una opción del menú",
                                                             "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -120,37 +121,14 @@ public class PrincipalEmpresa {
                                                                 JOptionPane.ERROR_MESSAGE);
                                                     }
                                                     break;
+//                                                    case 3:
+//                                                        ep.ingresarPelicula();
+//                                                        break;
                                                 case 3:
-                                                    esSalaEnComplejo = false;
-                                                    nombreComplejo = JOptionPane.showInputDialog("Especifique el nombre del complejo");
-                                                    idSala = Integer.parseInt(JOptionPane.showInputDialog("Especifique el número de la sala"));
-                                                    for (int i = 0; i < ep.complejos.length; i++) {
-                                                        if (ep.complejos[i] != null) {
-                                                            if (ep.complejos[i].nombre.equals(nombreComplejo)) {
-                                                                for (int j = 0; j < ep.complejos[i].salas.length; j++) {
-                                                                    if (ep.complejos[i].salas[j] != null) {
-                                                                        if (ep.complejos[i].salas[j].numeroSala == idSala) {
-                                                                            ep.complejos[i].salas[j].ingresarProgramacion();
-                                                                            esSalaEnComplejo = true;
-                                                                            break; // Rompemos para indicar que se ha encontrado una sala
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                        if (esSalaEnComplejo == true) {
-                                                            break;
-                                                        }
-                                                    }
-//                                                    ep.ingresarPelicula();
-                                                    break;
-                                                case 4:
                                                     peliEspecifica = JOptionPane.showInputDialog("Especifique el nombre de pelicula");
                                                     ep.actualizarDatosPelicula(peliEspecifica);
                                                     break;
-                                                case 5:
-                                                    // ESTE ES EL CASO 5 ANTERIOR PARA ADMINISTRADOR
-//                                                  case 5:
+//                                                    case 5:
 //                                                        boolean salaParaProgramacion = false;
 //                                                        for (int i = 0; i < cp.salas.length; i++) {
 //                                                            if (cp.salas[i] != null) {
@@ -165,6 +143,7 @@ public class PrincipalEmpresa {
 //                                                                    "ERROR", JOptionPane.ERROR_MESSAGE);
 //                                                        }
 //                                                        break;
+                                                case 4:
                                                     boolean salaParaPorcentaje = false;
                                                     for (int i = 0; i < ep.complejos[i].salas.length; i++) { // Recorremos el arreglo de objetos tipo Sala
                                                         if (ep.complejos[i].salas[i] != null) { // Verificamos que si exista el objeto de la sala en la posición indicada
@@ -183,21 +162,20 @@ public class PrincipalEmpresa {
                                                         JOptionPane.showMessageDialog(null, listadoPorcentajes);
                                                     }
                                                     break;
-                                                case 6:
+                                                case 5:
                                                     nombreComplejo = JOptionPane.showInputDialog("Especifique el nombre del complejo");
                                                     for (int l = 0; l < ep.complejos.length; l++) {
-                                                        if (ep.complejos[l].nombre.equals(nombreComplejo)) {
+                                                        if(ep.complejos[l].nombre.equals(nombreComplejo)){
                                                             JOptionPane.showMessageDialog(null, "El valor del recaudo por venta de boletas es: " + ep.complejos[l].calcularValorRecaudo());
                                                         }
                                                     }
                                                     break;
                                                 default:
-                                                    JOptionPane.showMessageDialog(null, "Opción no válida", "ERROR", JOptionPane.ERROR_MESSAGE);
                                                     break;
                                             }
 
                                             // AQUI ESTABA EL CATCH
-                                        } while (opcionesAdministrador != 7);
+                                        } while (opcionesAdministrador != 6);
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Autenticación fallida, intente nuevamente"
                                                 + "", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -229,24 +207,25 @@ public class PrincipalEmpresa {
                                                 }
                                                 switch (opcionesCajero) {
                                                     case 1:
+                                                        // PENDIENTE
+                                                        int nSala;
                                                         nombreComplejo = JOptionPane.showInputDialog("Especifique el nombre del complejo");
-                                                        idSala = Integer.parseInt(JOptionPane.showInputDialog("seleccione el numero de la sala"));
+                                                        nSala = Integer.parseInt(JOptionPane.showInputDialog("Especifique el nombre del complejo"));
                                                         for (int i = 0; i < ep.complejos.length; i++) {
-                                                            if (ep.complejos[i] != null) {
-                                                                if (ep.complejos[i].nombre.equals(nombreComplejo)) { // Comparamos nombre complejo
-                                                                    for (int j = 0; j < ep.complejos[i].salas.length; j++) {
-                                                                        if (ep.complejos[i].salas[j] != null) {
-                                                                            if (ep.complejos[i].salas[j].numeroSala == idSala) { // Comparamos numero de sala a ese complejo
-                                                                                JOptionPane.showMessageDialog(null, ep.complejos[i].salas[j].programaciones[i].peli
-                                                                                        + "\n" + ep.complejos[i].salas[j].programaciones[i].horario
-                                                                                        + "\n" + ep.complejos[i].salas[j].programaciones[i].numeroSala);
-                                                                                break;
-                                                                            }
-                                                                        }
-                                                                    }
+                                                            if(ep.complejos[i].nombre.equals(nombreComplejo)){ // Comparamos nombre complejo
+                                                                if(ep.complejos[i].salas[i].numeroSala == nSala){ // Comparamos numero de sala a ese complejo
+                                                                    JOptionPane.showMessageDialog(null, ep.complejos[i].salas[i].programaciones[i].peli
+                                                                            + "\n" + ep.complejos[i].salas[i].programaciones[i].horario
+                                                                            + "\n" + ep.complejos[i].salas[i].programaciones[i].numeroSala);
+                                                                    break;
+                                                                } else {
+                                                                    JOptionPane.showMessageDialog(null, "No se encontró la sala", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                                                                 }
+                                                            } else {
+                                                                JOptionPane.showMessageDialog(null, "No se encontró la sala", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                                                             }
                                                         }
+                                                        ep.complejos[0].salas[0].mostrarProgramacion();
                                                         break;
                                                     case 2:
                                                     try {
@@ -258,46 +237,38 @@ public class PrincipalEmpresa {
                                                     break;
                                                     case 3:
                                                         esSalaEnComplejo = false;
+                                                        idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
                                                         nombreComplejo = JOptionPane.showInputDialog("Ingrese el nombre del complejo");
-                                                        idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el numero de la sala"));
                                                         for (int i = 0; i < ep.complejos.length; i++) {
-                                                            if (ep.complejos[i] != null) {
-                                                                if (ep.complejos[i].nombre.equals(nombreComplejo)) {
-                                                                    for (int j = 0; j < ep.complejos[i].salas.length; j++) {
-                                                                        if (ep.complejos[i].salas[j] != null) {
-                                                                            if (ep.complejos[i].salas[j].numeroSala == idSala) {
-                                                                                ep.complejos[i].salas[j].mostrarMapaSala(idSala);
-                                                                                esSalaEnComplejo = true;
-                                                                                break; // Rompemos para indicar que se ha encontrado una sala
-                                                                            }
-                                                                        }
+                                                            for (int j = 0; j < ep.complejos[i].salas.length; j++) {
+                                                                if(ep.complejos[i].nombre.equals(nombreComplejo)){
+                                                                    if(ep.complejos[i].salas[i].numeroSala == idSala){
+                                                                        ep.complejos[i].salas[i].mostrarMapaSala(idSala);
+                                                                        esSalaEnComplejo = true;
+                                                                        break;
                                                                     }
                                                                 }
                                                             }
-                                                            if (esSalaEnComplejo == true) {
+                                                            if(esSalaEnComplejo == true){
                                                                 break;
                                                             }
                                                         }
                                                         break;
                                                     case 4:
                                                         esSalaEnComplejo = false;
+                                                        idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el id de la sala"));
                                                         nombreComplejo = JOptionPane.showInputDialog(null, "Especifique el nombre del complejo");
-                                                        idSala = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el numero de la sala"));
                                                         for (int i = 0; i < ep.complejos.length; i++) {
-                                                            if (ep.complejos[i] != null) {
-                                                                if (ep.complejos[i].nombre.equals(nombreComplejo)) {
-                                                                    for (int j = 0; j < ep.complejos[i].salas.length; j++) {
-                                                                        if (ep.complejos[i].salas[j] != null) {
-                                                                            if (ep.complejos[i].salas[j].numeroSala == idSala) {
-                                                                                ep.complejos[i].salas[j].reservarAsiento(idSala);
-                                                                                esSalaEnComplejo = true;
-                                                                                break; // Rompemos para indicar que se ha encontrado una sala
-                                                                            }
-                                                                        }
+                                                            for (int j = 0; j < ep.complejos[i].salas.length; j++) {
+                                                                if(ep.complejos[i].nombre.equals(nombreComplejo)){
+                                                                    if(ep.complejos[i].salas[i].numeroSala == idSala){
+                                                                        ep.complejos[i].salas[i].reservarAsiento(idSala);
+                                                                        esSalaEnComplejo = true;
+                                                                        break;
                                                                     }
                                                                 }
-                                                            } // Una vez comprobado que existe una sala dentro de un complejo especifico, se deja de ejecutar el ciclo
-                                                            if (esSalaEnComplejo == true) {
+                                                            }
+                                                            if(esSalaEnComplejo == true){
                                                                 break;
                                                             }
                                                         }
@@ -307,7 +278,6 @@ public class PrincipalEmpresa {
                                                         ep.rv.generarBoleta();
                                                         break;
                                                     default:
-                                                        JOptionPane.showMessageDialog(null, "Opción no válida", "ERROR", JOptionPane.ERROR_MESSAGE);
                                                         break;
                                                 }
                                             } while (opcionesCajero != 6);
