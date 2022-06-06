@@ -47,7 +47,7 @@ public class PrincipalEmpresa {
         }
         
         // Creamos las variables con respecto a las cantidades de complejos y peliculas que promoverá la empresa
-        int numeroPeliculas, numeroComplejos;
+        int numeroPeliculas, numeroComplejos, cAlertas = 0;
         numeroComplejos = Integer.parseInt(JOptionPane.showInputDialog("¿Cuantos complejos en total posee la empresa?"));
         numeroPeliculas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de peliculas a registrar"));
         ep = new Empresa(numeroComplejos);
@@ -109,8 +109,11 @@ public class PrincipalEmpresa {
                                                     do {
                                                         try {
                                                             controlExcep = 0;
-                                                            nRegistros = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de complejos a registrar"
+                                                            if (cAlertas == 0){
+                                                                nRegistros = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de complejos a registrar"
                                                                     + "\n(Cabe aclarar que estos no deben ser mayores al máximo establecido) "));
+                                                                cAlertas = 1;
+                                                            }
                                                             if (nRegistros > ep.complejos.length) {
                                                                 JOptionPane.showMessageDialog(null, "No puede registar más complejos del que tiene la empresa", "ERROR", JOptionPane.ERROR_MESSAGE);
                                                             }

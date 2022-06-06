@@ -64,7 +64,7 @@ public class Complejo {
         int nSalasRegistrar; // n, es el número de salas que el usuario quiere ingresar en el momento.
 
         do {
-            nSalasRegistrar = Integer.parseInt(JOptionPane.showInputDialog("¿Ingrese el número de salas a registrar: ?"));
+            nSalasRegistrar = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de salas a registrar"));
             if (nSalasRegistrar > 10) {
                 JOptionPane.showMessageDialog(null, "No pueden registrarse mas de 10 salas", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
