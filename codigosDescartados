@@ -1,0 +1,168 @@
+    /*Este método se encarga de actualizar cualquier dato de una pelicula especificando el nombre de la misma
+    @author Jose Manuel Quintero Rodriguez*/
+//    public void actualizarInfoPelicula(String nombre){
+//        int opcionCambio;
+//        boolean existencia = false;
+//        for (int i = 0; i < pl.peliculas.length; i++) {
+//            if(pl.peliculas[i].nomEspanol.equalsIgnoreCase(nombre)){
+//                existencia = true;
+//                do{
+//                    opcionCambio = Integer.parseInt(JOptionPane.showInputDialog("¿Que dato desea cambiar?"
+//                        + "\n1. Nombre en español"
+//                        + "\n2. Año de estreno"
+//                        + "\n3. Duracion en minutos"
+//                        + "\n4. Nombre original"
+//                        + "\n5. Pais de origen"
+//                        + "\n6. Genero"));
+//                    if(opcionCambio < 1 || opcionCambio > 6){
+//                        JOptionPane.showMessageDialog(null, "No existe ese dato de la pelicula", "ERROR", JOptionPane.ERROR_MESSAGE);
+//                    }
+//                } while(opcionCambio < 1 || opcionCambio > 6);
+//                switch(opcionCambio){
+//                    case 1:
+//                        pl.peliculas[i].nomEspanol = JOptionPane.showInputDialog("Ingrese nuevo nombre");
+//                        break;
+//                    case 2:
+//                        pl.peliculas[i].anioEstreno = Integer.parseInt(JOptionPane.showInputDialog("Ingrese nuevo año"));
+//                        break;
+//                    case 3:
+//                        pl.peliculas[i].duracionMinutos = Integer.parseInt(JOptionPane.showInputDialog("Ingrese nueva duracion"));
+//                        break;
+//                    case 4:
+//                        pl.peliculas[i].nomOriginal = JOptionPane.showInputDialog("Ingrese nuevo nombre original");
+//                        break;
+//                    case 5:
+//                        pl.peliculas[i].paisOrigen = JOptionPane.showInputDialog("Ingrese nuevo pais de origen");
+//                        break;
+//                    default:
+//                        break;
+//                } 
+//            }
+//        }
+//        if(existencia == false){
+//            JOptionPane.showMessageDialog(null, "No existe la pelicula con el nombre especificado", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+//        }
+//    }
+
+
+/* Este método se encarga de consultar y verificar que no hayan salas repetidas por identificador
+    además de que retorna un objeto de tipo Sala*/
+    public Sala consultarSala(int id) {
+        int i = 0; // variable iteradora del ciclo
+        // si la receta en la posicion x es diferente de nulo
+        while (salas[i] != null) {
+            // sie el indentificador de la sala en la posicion i concuerda con el id ingresado como parametro
+            if (salas[i].identificador == id) {
+                // retornamos el objeto en la posicion x y de ahi pare de contar y corte el metodo
+                return salas[i];
+            }
+            i++;
+        } // si el metodo retorna un nulo es porque no hay nombres de recetas repetidas
+        return null;
+    }
+
+
+/*Este método se encarga de mostrar los usuarios que tiene registrados el sistema
+    @author José Manuel Quintero Rodriguez*/
+    public void mostrarUsuarios(){
+        String cajerosRegistrados = "";
+        for (int i = 0; i < users.length; i++) {
+            cajerosRegistrados += "Nombre: " + users[i].getNombre() + "\n";
+        }
+        JOptionPane.showMessageDialog(null, cajerosRegistrados);
+    }
+
+    /* Esté metodo permite mostrar el mapa de la sala
+    @author José Manuel Quintero Rodríguez*/
+//    public void mostrarMapaSala(int id) {
+//        String muestreMapa = "";
+//        for (int i = 0; i < cantidadFilas; i++) {
+//            for (int j = 0; j < sillasPorFila; j++) {
+//                muestreMapa +=  "" + mapa[i][j] + "";
+//            }
+//            muestreMapa += "\n";
+//        }
+//        JOptionPane.showMessageDialog(null, muestreMapa);
+//    }
+
+// ESTO HACIA PARTE DEL METODO DE INGRESAR SALA
+
+        // Con esto se asignaba el tamaño del arreglo de las salas de forma manual
+//        int numSalas;
+//        do { // Pedir el numero de salas y asegurarse de que no sean mas de 10
+//            numSalas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de las salas:"));
+//            if(numSalas < 1 || numSalas > 10)
+//                JOptionPane.showMessageDialog(null, "Un complejo no debe tener mas de 10 salas", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+//        } while(numSalas < 1 || numSalas > 10);
+//        salas = new Sala[numSalas];
+
+//
+//	 /*Método encargado de mostrar el mapa de una sala en un estado temporal durante la programacion de un filme*/
+//	 public void mostrarMapaProgramado(int idSala) {
+//			boolean existencia = false;
+//			String muestreMapa = "";
+//			for (int i = 0; i < cp.salas.length; i++) { // Recorremos el arreglo de la sala
+//				 if (cp.salas[i] != null) { // Verificamos si la sala existe
+//						if (cp.salas[i].numeroSala == idSala) { // Verificamos si existe la sala
+//							 existencia = true;
+//							 for (int j = 0; j < cp.salas[i].cantidadFilas; j++) {
+//									for (int k = 0; k < cp.salas[i].sillasPorFila; k++) {
+//										 try {
+//												muestreMapa += sl.programaciones[i].sillas[j][k] + " ";
+//										 } catch (NullPointerException ex) {
+//												JOptionPane.showMessageDialog(null, "No existen programaciones registradas");
+//										 }
+//									}
+//									muestreMapa += "\n";
+//							 }
+//						}
+//				 } else {
+//						JOptionPane.showMessageDialog(null, "No hay salas registradas en este complejo", "ERROR", JOptionPane.ERROR_MESSAGE);
+//						break; // Rompemos el ciclo inmediatamente sacandonos del ciclo
+//				 }
+//			} // En caso de que la existencia de esa sala especifica sea falsa
+//			if (existencia == true) {
+//				 JOptionPane.showMessageDialog(null, muestreMapa);
+//			}
+//	 }
+
+// Ciclo para comprobar que el usuario NO INGRESE un caracter.
+	
+                                            do {
+  try {
+                                                            controlExcep = 0;
+                                                            if (cAlertas == 0) {
+                                                                nRegistros = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de complejos a registrar"
+                                                                        + "\n(Cabe aclarar que estos no deben ser mayores al máximo establecido) "));
+                                                                cAlertas = 1;
+                                                            }
+                                                            if (nRegistros > ep.complejos.length) {
+                                                JOptionPane.showMessageDialog(null, "No puede registar más complejos del que tiene la empresa", "ERROR", JOptionPane.ERROR_MESSAGE);
+                                            }
+                                        } catch (NumberFormatException e) {
+                                                            JOptionPane.showMessageDialog(null, "Debe ingresar un número", "ERROR", JOptionPane.ERROR_MESSAGE);
+                                                            controlExcep = 1;
+                                                        }
+                                    }
+                                    while (controlExcep == 1);
+
+                                    for (i = 0; i < ep.complejos.length; i++) {
+
+                                        // Este condicional rompe el ciclo si, el iterador es mas grande que el número de complejos que el usuario quiere registar.
+                                        if (i > nRegistros) {
+                                            break;
+                                        }
+                                        if (ep.complejos[i] == null && i < nRegistros) {
+
+                                            ep.complejos[i] = new Complejo();
+                                            ep.complejos[i].pedirInfoComplejo();
+                                            // Mensaje de confirmación.
+                                            JOptionPane.showMessageDialog(null, "Complejo registrado Exitosamente");
+                                        } else {
+                                            if (i >= numeroComplejos) {
+                                                JOptionPane.showMessageDialog(null, "No se permite ingresar mas complejos",
+                                                        "ADVERTENCIA", JOptionPane.ERROR_MESSAGE);
+                                                break;
+                                            }
+                                        }
+                                    }
