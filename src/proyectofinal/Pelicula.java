@@ -146,7 +146,8 @@ public class Pelicula {
      * @author Jose Manuel Quintero Rodriguez
      * @author Juan Ángel Riaño Quintero
      *
-     * @return nomGenero donde se debe retornar el nombre del genero de la película.
+     * @return nomGenero donde se debe retornar el nombre del genero de la
+     * película.
      *
      */
     public String obtenerNombreGenero() {
