@@ -41,14 +41,12 @@ public class Programacion {
 	 * @author Juan Angel Riaño Quintero.
 	 */
 	public void pedirInfoProgramacion() {
-		
 		peli = new Pelicula();
 		peli.pedirInfoPelicula();
 		if (peli.actividad == true) {
 			horario = JOptionPane.showInputDialog("Ingrese la hora en la que se proyectará la película: ");
 		}
 		else {
-			
 			JOptionPane.showMessageDialog(null, "La película no se agregó a la programación", 
 			"PRECACUCION", JOptionPane.WARNING_MESSAGE);
 		}
